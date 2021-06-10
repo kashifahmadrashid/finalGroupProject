@@ -1,171 +1,225 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./css/style.css">
-
-    <!-- Bootstrap CSS -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="./index.js"></script>
-    <title>My Planner</title>
-  </head>
-  <main>
-  <body>
-    <header class="heading">
-        <h1>My Task Planner</h1>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- header starts here -->
+    <header>
+        <h1>Task Planner</h1>
     </header>
-    <br>
-    
-    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- header ends here -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    -->
-    <section class="taskForm">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Add Task
-    </button>
-    
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Your Task</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-12">
-                        <span id="errMsg1"></span>
-                        <label for="taskTitle">Task Title</label>
-                        <input type="text" id="taskTitle" class="form-control" placeholder="" aria-label="Task Title">
-
-                    </div>
-                    <div class="col-12">
-                      <label for="taskDescription">Task Description</label>
-                      <textarea name="" id="taskDescription" cols="60" rows="5"></textarea>  
-                    
-                    </div>
-                    <div class="col-12">
-                        <label for="taskAssignment">Assigned To</label>
-                        <input type="text" id="taskAssignment" class="form-control" placeholder="" aria-label="Task Assignment">
-                      
-                    </div>
-                    <div class="col-12">
-                        <label for="taskDueDate">Due Date</label>
-                        <input type="text" id="taskDueDate" class="form-control" placeholder="" aria-label="Due Date">
-                      
-                    </div>
-                    <div class="col-12">
-                        <div class="col-4">
-                            <label for="inputState" class="form-label">Status</label>
-                            <select id="inputState" class="form-select">
-                              <option selected></option>
-                              <option>To-Do</option>
-                              <option value="">In-Progress</option>
-                              <option value="">Review</option>
-                              <option value="">Done</option>
-                            </select>
-                          </div>
-                      
-                    </div>
-                  </div>
-            
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" id="submitBtn" class="btn btn-primary">Submit</button>
+    <main>
+<!-- form start here -->
+    <form>
+      <!-- action="/action_page.php" -->
+<div class="container border bg-info">
+        <div class="row border">
+            <div Class="col-lg-12 border">
+                <legend>New Task:</legend>
+                <div class="row border">
+                    <div Class="col-lg-3 border">
+                    <div class="input-group mb-5 d-flex flex-column"> 
+                      <!-- Task title start -->
+                   <label class="form-label me-3" for="name">Name: </label>
+                   <span id="errMsg1"></span>
+                   <input class="form-control w-75" type="text" id="taskTitle" name="name" >
+                </div>
             </div>
         </div>
+        <div class="row border">
+            <div Class="col-lg-8">
+            <div class="input-group mb-5"> 
+                <!-- Decription start -->
+                    <label class="form-label me-3" for="description">Decription:</label>
+                    <textarea class="form-control" id="taskDescription"></textarea>
+               </div>
+            </div>
+        </div>
+        <div class="row border">
+                <div class="col-1g-2 col-md-3 border">
+                   <div class="input-group mb-5"> 
+                     <!-- Assign to start -->
+                    <label class="form-label me-3" for="assignedTo">Assigned To:</label>
+                    <input class="form-control" type="text" id="taskAssignment" name="assignedTo"><br><br>
+                 </div>
+              </div>
+              <div class="col-1g-2 col-md-3 border">
+                    <div class="input-group mb-5"> 
+                      <!-- Due date start -->
+                        <label class="form-label me-3" for="dueDate"> Due Date:</label>
+                        <input class="form-control" type="date" id="taskDueDate" name="dueDate">
+                    </div>
+              </div>
+              <div class="col-1g-2 col-md-2 border">
+                <div class="input-group mb-5"> 
+              <select class="form-select" aria-label="Status" id="inputState">
+                <option selected>Status</option>
+                <option value="todo">To Do</option>
+                <option value="inprogress">In Progress</option>
+                <option value="done">Done</option>
+              </select>
+            </div>
+        </div>
+        </div>
+                <div class="input-group mb-5">
+                    <div class="col-6">
+                            <button class="btn btn-primary" type="button" id="addtask">Add task</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</form>
+<!-- form end here -->
+
+<!-- List group starts here -->
+<div class="container border">
+    <div class="row border">
+        <div Class="col-lg-6 col-md-10 col-sm-12">
+            <ul class="list-group">
+
+              <!-- This is first task card -->
+              <li class="list-group-item">
+                <div class="card">
+                  <div class="card-body d-flex w-100 justify-content-between">
+                        <div>
+                          <h5 class="card-title">Shopping Card</h5>
+                          <p class="card-text">Assigned To: Shahin</p>
+                          <h6><p class="card-text">Shahin</p></h6>
+                        </div>
+                  <div>
+                  <div>
+                        <p class="card-text">Due date: 18/05/2021</p>
+                        <p class="card-text">Status: In Progress</p>
+                  </div>
+                  <div class="mt-3">
+                        <a href="#" class="btn btn-primary">Details</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                  </div>
+                </div>
+            <!-- </div> -->
+              </li> 
+
+                <!-- This is second task card -->
+                <li class="list-group-item">
+                  <div class="card">
+                    <div class="card-body d-flex w-100 justify-content-between border">
+                          <div>
+                            <h5 class="card-title border">About me page</h5>
+                            <p class="card-text border">Assigned To: Shahin</p>
+                            <h6><p class="card-text border">Shahin</p></h6>
+                          </div>
+                    <div>
+                    <div>
+                          <p class="card-text border">Due date: 18/05/2021</p>
+                          <p class="card-text border">Status: In Progress</p>
+                    </div>
+                    <div class="mt-3">
+                          <a href="#" class="btn btn-primary ">Details</a>
+                          <a href="#" class="btn btn-danger">Delete</a>
+                    </div>
+                  </div>
+              <!-- </div> -->
+                </li> 
+
+                <!-- This is third task card -->
+                <li class="list-group-item">
+                        <div class="card">
+                          <div class="card-body d-flex w-100 justify-content-between">
+                                <div>
+                                  <h5 class="card-title">Map developing</h5>
+                                  <p class="card-text">Assigned To: Vinh</p>
+                                  <h6><p class="card-text">Vinh</p></h6>
+                                </div>
+                          <div>
+                          <div>
+                                <p class="card-text">Due date: 18/05/2021</p>
+                                <p class="card-text">Status: In Progress</p>
+                          </div>
+                          <div class="mt-3">
+                                <a href="#" class="btn btn-primary">Details</a>
+                                <a href="#" class="btn btn-danger">Delete</a>
+                          </div>
+                        </div>
+                    <!-- </div> -->
+                </li>
                 
-    </div>
+                <!-- This is fourth task card -->
+                <li class="list-group-item">
+                  <div class="card">
+                    <div class="card-body d-flex w-100 justify-content-between">
+                          <div>
+                            <h5 class="card-title">Lunch</h5>
+                            <p class="card-text">Assigned To: Vinh</p>
+                            <h6><p class="card-text">Vinh</p></h6>
+                          </div>
+                    <div>
+                    <div>
+                          <p class="card-text">Due date: 18/05/2021</p>
+                          <p class="card-text">Status: In Progress</p>
+                    </div>
+                    <div class="mt-3">
+                          <a href="#" class="btn btn-primary">Details</a>
+                          <a href="#" class="btn btn-danger">Delete</a>
+                    </div>
+                  </div>
+              <!-- </div> -->
+                </li> 
 
-   
-  </section>
-  <br>
-  <section class="taskList">
-    <div class="card" style="width: 40rem;">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <div class="card" style="" >
-            <div class="card-body">
-              <h5 class="card-title">Dinner with Friends</h5>
-              
-              <p class="card-text">Reunion dinner with friends at 100 Gradi. </p>
-              <span>Assigned To: Dimitri and Kashif |</span>
-              <span>Due By: 15/5/2021 |</span>
-              <span>Status: Done</span>
-            
-            </div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="card" style="">
-            <div class="card-body">
-              <h5 class="card-title">Grocery Shopping</h5>
-              
-              <p class="card-text">Do the grocery Shopping on the way back home. </p>
-              <span>Assigned To: Kashif |</span>
-              <span>Due By: 18/5/2021 |</span>
-              <span>Status: To-Do </span>
-         
-            </div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="card" style="">
-            <div class="card-body">
-              <h5 class="card-title">Dentist Appointment</h5>
-              
-              <p class="card-text">Appointment with the dentist to discuss all the reports. </p>
-              <span>Assigned To: Dimitri |</span>
-              <span>Due By: 19/5/2021 |</span>
-              <span>Status: To-Do</span>
-              
-            </div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="card" style="">
-            <div class="card-body">
-              <h5 class="card-title">Final Presentation Preparation</h5>
-              
-              <p class="card-text">Final budget presentation with the management </p>
-              <span>Assigned To: Dimitri |</span>
-              <span>Due By: 18/5/2021 |</span>
-              <span>Status: In-Progress</span>
-          
-            </div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          
-          <div class="card" style="">
-            <div class="card-body">
-              <h5 class="card-title">Board Minutes of Meeting</h5>
-              
-              <p class="card-text">Board meeting minutes to be reviewed and do the changes accordingly. </p>
-              <span>Assigned To: Kashif |</span>
-              <span>Due By: 19/5/2021 |</span>
-              <span>Status: Review</span>
-              
-            </div>
-          </div>
-        </li>
-        
-      </ul>
+                <!-- This is fifth task card -->
+                <li class="list-group-item">
+                  <div class="card">
+                    <div class="card-body d-flex w-100 justify-content-between">
+                          <div>
+                            <h5 class="card-title">Last page</h5>
+                            <p class="card-text">Assigned To: Shahin</p>
+                            <h6><p class="card-text">Shahin</p></h6>
+                          </div>
+                    <div>
+                    <div>
+                          <p class="card-text">Due date: 18/05/2021</p>
+                          <p class="card-text">Status: In Progress</p>
+                    </div>
+                    <div class="mt-3">
+                          <a href="#" class="btn btn-primary">Details</a>
+                          <!-- <a href="#" class="btn btn-danger">Delete</a> -->
+                          <button type="button" class="btn btn-danger">Danger</button>
+                    </div>
+                  </div>
+              <!-- </div> -->
+                </li> 
+            </ul>
+        </div>
     </div>
+  </div>
+</div>
+<!-- List Group ends here -->
 
-  </section>
-  
-  </body>
-  </main>
+<!-- footer starts here -->
+</main>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div Class="col">
+                <br><br>
+            </div>
+        </div>
+        </div>
+</footer>
+<!-- footer ends here -->
+
+<script src="index.js"></script>;
+   </body>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>   
+
+
 </html>

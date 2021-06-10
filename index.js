@@ -9,10 +9,10 @@ submitBtn.addEventListener("click", validFormInput );
 
 function validFormInput () {
     if(taskTitle == "" || taskTitle.length < 5){
-        errMsg.innerHTML = "The Title shouldn\'t be less than 5 characters"
+        errMsg.innerHTML = "The Title shouldn\'t be less than 5 characters";
         document.querySelector("#errMsg1").style.color = "#ff0000";
         taskTitle.focus(); // it will focus on the Task title input
-    }else{
+    } else {
         errMsg.innerHTML = "OK to Submit";
     }
 }
