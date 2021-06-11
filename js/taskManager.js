@@ -1,14 +1,23 @@
 class TaskManager{
     constructor(taskTitle, description, assingment, dueDate, status){
-        this.task = taskTitle;
-        this.description = description;
-        this.assignment = assignment;
-        this.dueDate = dueDate;
-        this.status = status;
+        this.tasks = [];
     }
-
 }
 
-// const taskList = new TaskManager();
-// console.log(taskList)
-// console.log(taskList.tasks)
+
+
+
+
+let submitBtn = document.querySelector('#submitBtn')
+submitBtn.addEventListener('click', addTask)
+
+function addTask () {
+    var card = document.createElement('p');
+    card.innerText = taskTitle.value;
+    tasks.appendChild(card);
+    taskTitle.value ="";
+
+}
+card.addEventListener("dblclick", function(){
+    tasks.removeChild(card);
+})
