@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 
     <!-- header starts here -->
     <header>
-        <h1>Task Planner</h1>
+        <h1 class="mt-4">Task Planner</h1>
+        -------------------------------------------
+      <!-- <hr style="width: 300; align-self: center;"> -->
     </header>
     <!-- header ends here -->
 
@@ -20,63 +22,68 @@
 <!-- form start here -->
     <form>
       <!-- action="/action_page.php" -->
-<div class="container border bg-info">
+<div class="container border mt-5 newtask">
         <div class="row border">
             <div Class="col-lg-12 border">
-                <legend>New Task:</legend>
+                <legend style="text-align: center;"><h4>New Task:</h4></legend>
                 <div class="row border">
-                    <div Class="col-lg-3 border">
-                    <div class="input-group mb-5 d-flex flex-column"> 
-                      <!-- Task title start -->
-                   <label class="form-label me-3" for="name">Name: </label>
-                   <span id="errMsg1"></span>
-                   <input class="form-control w-75" type="text" id="taskTitle" name="name" >
-                </div>
+                  <!-- Task title start -->
+                  <div Class="col-lg-4 col-md-6 border">
+                    <div class="input-group mb-4 d-flex flex-column"> 
+                    <label class="form-label me-3" for="name"><h6>Name:</h6></label>                   
+                    <input class="form-control w-50" type="text" id="taskTitle" name="name" required>
+                    <span id="errMsg1"></span>
+                  </div>
             </div>
         </div>
         <div class="row border">
+              <!-- Decription start -->
             <div Class="col-lg-8">
-            <div class="input-group mb-5"> 
-                <!-- Decription start -->
-                    <label class="form-label me-3" for="description">Decription:</label>
-                    <textarea class="form-control" id="taskDescription"></textarea>
+              <div class="input-group mb-4 d-flex flex-column"> 
+                    <label class="form-label me-3" for="description"><h6>Decription:</h6></label>
+                    <textarea class="form-control w-75" id="taskDescription"></textarea>
+                    <span id="errMsg2"></span>
                </div>
             </div>
         </div>
         <div class="row border">
-                <div class="col-1g-2 col-md-3 border">
-                   <div class="input-group mb-5"> 
-                     <!-- Assign to start -->
-                    <label class="form-label me-3" for="assignedTo">Assigned To:</label>
-                    <input class="form-control" type="text" id="taskAssignment" name="assignedTo"><br><br>
+              <!-- Assign to start -->
+                <div class="col-1g-2 col-md-4 border">
+                   <div class="input-group mb-3 d-flex flex-column"> 
+                     <label class="form-label me-3" for="assignedTo"><h6>Assigned To:</h6></label>
+                    <input class="form-control w-50" type="text" id="taskAssignment" name="assignedTo">
+                    <span id="errMsg3"></span>
                  </div>
               </div>
-              <div class="col-1g-2 col-md-3 border">
-                    <div class="input-group mb-5"> 
-                      <!-- Due date start -->
-                        <label class="form-label me-3" for="dueDate"> Due Date:</label>
-                        <input class="form-control" type="date" id="taskDueDate" name="dueDate">
+              <!-- Due date start -->
+              <div class="col-1g-2 col-md-4 border">
+                    <div class="input-group mb-3 d-flex flex-column"> 
+                        <label class="form-label me-3" for="dueDate"><h6>Due Date:</h6></label>
+                        <input class="form-control w-75" type="date" id="taskDueDate" name="dueDate">
+                        <span id="errMsg4"></span>
                     </div>
               </div>
-              <div class="col-1g-2 col-md-2 border">
-                <div class="input-group mb-5"> 
-              <select class="form-select" aria-label="Status" id="inputState">
-                <option selected>Status</option>
-                <option value="todo">To Do</option>
-                <option value="inprogress">In Progress</option>
-                <option value="done">Done</option>
-              </select>
-            </div>
+              <div class="col-1g-2 col-md-4 border">
+                <div class="input-group mb-1 d-flex flex-column"> 
+                  <label class="form-label me-3" for="dueDate"><h6>Select status:</h6></label>
+                    <select class="form-select w-50" aria-label="Status" id="inputState">
+                      <option selected>Status</option>
+                      <option value="todo">To Do</option>
+                      <option value="inprogress">In Progress</option>
+                      <option value="done">Done</option>
+                    </select>
+                    <span id="errMsg5"></span>
+                </div>
+              </div>
         </div>
-        </div>
-                <div class="input-group mb-5">
+                <div class="input-group mb-3">
                     <div class="col-6">
-                            <button class="btn btn-primary" type="button" id="addtask">Add task</button>
+                            <button class="btn btn-primary" type="button" id="addBtn">Add task</button>
                     </div>
                 </div>
-            </div>
         </div>
-</div>
+    
+  </div>
 </form>
 <!-- form end here -->
 
@@ -216,7 +223,7 @@
 </footer>
 <!-- footer ends here -->
 
-<script src="index.js"></script>;
+<script src="js/index.js"></script>;
    </body>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>   

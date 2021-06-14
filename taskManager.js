@@ -1,7 +1,7 @@
 class TaskManager {
     constructor (currentId = 0) {
         this.currentId = currentId;
-        this.tasks;
+        this.tasks = [];
     }
     
     addTask (name, dcrip, assign) {
@@ -13,23 +13,25 @@ class TaskManager {
     };
     putIntoArray () {
         //this.tasks = new Array; 
-        var array1 = new Array()
-        array1.push(this.addTask());
-        this.tasks = [{array1}];
+        //var array1 = new Array()
+        // this.tasks.push(task1);
+        //this.tasks = array1;
         
     };
 };
 
 
 const obj = new TaskManager();
-//let arr1 = new array[];
+let arr1 = [];
 obj.addTask("HomeSite", "tastofvinh", "vinh");        
-
-//obj.putIntoArray();
+var newtast = obj.addTask("HomeSite", "tastofvinh", "vinh"); 
+// obj.putIntoArray(newtast);
 console.log(obj.nameT);
 console.log(obj.dcripT);
 console.log(obj.assignT);
 
 //console.log(obj.addTask("HomeSite", "tastofvinh", "vinh"));
+arr1.push(newtast);
 console.log(obj.currentId);
-//console.log(obj.tasks);
+console.log(arr1[0]);
+//console.log(array1)
