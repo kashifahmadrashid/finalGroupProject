@@ -25,7 +25,7 @@ function validFormInput (e) {
     } else {
         errMsg1.innerHTML = "OK to Submit";
     }
-    if(taskDescription.value == "" || taskDescription.value.length < 5){
+    if(taskDescription.value.trim() == "" || taskDescription.value.length < 5){
         errMsg2.innerHTML = "The description should not be left blank and should be more than 5 characters"
         document.querySelector("#errMsg2").style.color = "#ff0000"
         taskDescription.focus();
