@@ -41,7 +41,7 @@
             <div Class="col-lg-8">
               <div class="input-group mb-4 d-flex flex-column"> 
                     <label class="form-label me-3" for="description"><h6>Decription:</h6></label>
-                    <textarea class="form-control w-75" id="taskDescription"></textarea>
+                    <textarea class="form-control w-75" id="taskDescription" required></textarea>
                     <span id="errMsg2"></span>
                </div>
             </div>
@@ -51,7 +51,7 @@
                 <div class="col-1g-2 col-md-4 border">
                    <div class="input-group mb-3 d-flex flex-column"> 
                      <label class="form-label me-3" for="assignedTo"><h6>Assigned To:</h6></label>
-                    <input class="form-control w-50" type="text" id="taskAssignment" name="assignedTo">
+                    <input class="form-control w-50" type="text" id="taskAssignment" name="assignedTo" required>
                     <span id="errMsg3"></span>
                  </div>
               </div>
@@ -59,14 +59,14 @@
               <div class="col-1g-2 col-md-4 border">
                     <div class="input-group mb-3 d-flex flex-column"> 
                         <label class="form-label me-3" for="dueDate"><h6>Due Date:</h6></label>
-                        <input class="form-control w-75" type="date" id="taskDueDate" name="dueDate">
+                        <input class="form-control w-75" type="date" id="taskDueDate" name="dueDate" required>
                         <span id="errMsg4"></span>
                     </div>
               </div>
               <div class="col-1g-2 col-md-4 border">
                 <div class="input-group mb-1 d-flex flex-column"> 
                   <label class="form-label me-3" for="dueDate"><h6>Select status:</h6></label>
-                    <select class="form-select w-50" aria-label="Status" id="inputState">
+                    <select class="form-select w-50" aria-label="Status" id="inputState" required>
                       <option selected>Status</option>
                       <option value="todo">To Do</option>
                       <option value="inprogress">In Progress</option>
@@ -78,7 +78,7 @@
         </div>
                 <div class="input-group mb-3">
                     <div class="col-6">
-                            <button class="btn btn-primary" type="button" id="addBtn">Add task</button>
+                            <button class="btn btn-primary" type="submit" id="addBtn">Add task</button>
                     </div>
                 </div>
         </div>
@@ -159,50 +159,7 @@
                     <!-- </div> -->
                 </li>
                 
-                <!-- This is fourth task card -->
-                <li class="list-group-item">
-                  <div class="card">
-                    <div class="card-body d-flex w-100 justify-content-between">
-                          <div>
-                            <h5 class="card-title">Lunch</h5>
-                            <p class="card-text">Assigned To: Vinh</p>
-                            <h6><p class="card-text">Vinh</p></h6>
-                          </div>
-                    <div>
-                    <div>
-                          <p class="card-text">Due date: 18/05/2021</p>
-                          <p class="card-text">Status: In Progress</p>
-                    </div>
-                    <div class="mt-3">
-                          <a href="#" class="btn btn-primary">Details</a>
-                          <a href="#" class="btn btn-danger">Delete</a>
-                    </div>
-                  </div>
-              <!-- </div> -->
-                </li> 
-
-                <!-- This is fifth task card -->
-                <li class="list-group-item">
-                  <div class="card">
-                    <div class="card-body d-flex w-100 justify-content-between">
-                          <div>
-                            <h5 class="card-title">Last page</h5>
-                            <p class="card-text">Assigned To: Shahin</p>
-                            <h6><p class="card-text">Shahin</p></h6>
-                          </div>
-                    <div>
-                    <div>
-                          <p class="card-text">Due date: 18/05/2021</p>
-                          <p class="card-text">Status: In Progress</p>
-                    </div>
-                    <div class="mt-3">
-                          <a href="#" class="btn btn-primary">Details</a>
-                          <!-- <a href="#" class="btn btn-danger">Delete</a> -->
-                          <button type="button" class="btn btn-danger">Danger</button>
-                    </div>
-                  </div>
-              <!-- </div> -->
-                </li> 
+                                
             </ul>
         </div>
     </div>
