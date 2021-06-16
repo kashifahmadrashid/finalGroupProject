@@ -20,7 +20,7 @@ function validFormInput (e) {
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
         errMsg1.innerHTML = "The Title shouldn\'t be less than 5 characters";
         document.querySelector("#errMsg1").style.color = "#ff0000";
-        taskTitle.focus(); // it will focus on the Task title input
+        taskTitle.focus(); 
         allPassed = false;
     } else {
         errMsg1.innerHTML = "OK to Submit";
@@ -33,7 +33,7 @@ function validFormInput (e) {
     }else {
         errMsg2.innerHTML = "Looks Good";
     }
-    if(taskAssignment.value == "" || taskAssignment.value.length < 2){
+    if(taskAssignment.value.trim() == "" || taskAssignment.value.length < 2){
         errMsg3.innerHTML = "Please assign task to someone";
         document.querySelector("#errMsg3").style.color = "#ff0000"
         taskAssignment.focus();
@@ -72,6 +72,19 @@ function validFormInput (e) {
 
 e.preventDefault();
 }
+const taskList = document.querySelector("#task-list");
+taskList.addEventListener("click",(event) => {
+    if (event.target.classList.contains("doneBtn")){
+        // console.log(event.target.parentElement);
+    }
+    const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+    const taskId = Number(parentTask.dataset.taskId);
+    const task = newTask.getTaskById(taskId);
+    task.status = "Done";
+    // console.log(event.target.parentElement)
+    newTask.render();
+})
+
 
 
 
