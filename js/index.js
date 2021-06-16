@@ -23,10 +23,10 @@ function validFormInput (e) {
         taskTitle.focus(); 
         allPassed = false;
     } else {
-        errMsg1.innerHTML = "OK to Submit";
+        errMsg1.innerHTML = "Looks Good";
     }
     if(taskDescription.value.trim() == "" || taskDescription.value.length < 5){
-        errMsg2.innerHTML = "The description should not be left blank and should be more than 5 characters"
+        errMsg2.innerHTML = "The Task Title must be greater than 5 characters"
         document.querySelector("#errMsg2").style.color = "#ff0000"
         taskDescription.focus();
         allPassed = false;
@@ -70,20 +70,34 @@ function validFormInput (e) {
 		console.log(taskHtml);
         newTask.render();
 
+    taskTitle.value="";
+    taskDescription.value="";
+    taskAssignment.value="";
+    dueDate.value="";
+    taskStatus.value="";
+    
 e.preventDefault();
 }
+
 const taskList = document.querySelector("#task-list");
+
+
 taskList.addEventListener("click",(event) => {
     if (event.target.classList.contains("doneBtn")){
-        // console.log(event.target.parentElement);
-    }
+      
+    
     const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+    
+    
     const taskId = Number(parentTask.dataset.taskId);
+    
     const task = newTask.getTaskById(taskId);
-    task.status = "Done";
-    // console.log(event.target.parentElement)
+    
+    task.inputState = "Done";
+    
     newTask.render();
-})
+}
+});
 
 
 

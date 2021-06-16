@@ -46,7 +46,7 @@ class TaskManager{
         };
         this.tasks.push(newTask);
         console.log(this.tasks)
-        //return this.tasks;
+        return this.tasks;
 
     };
     render (){
