@@ -1,24 +1,28 @@
-const createTaskHTML = (taskTitle, taskDescription, taskAssignment, taskDueDate, inputState) =>{
-    const html = `<li class="list-group-item">
-                <div class="card">
-                  <div class="card-body d-flex w-100 justify-content-between">
-                        <div>
-                          <h5 class="card-title" id="taskHeading" >${taskTitle}</h5>
-                          <textarea class="form-control" id="taskDescription">${taskDescription}</textarea>
-                          <p class="card-text" id="taskAssign">${taskAssignment}</p>
-                          
+const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskDueDate, inputState) =>{
+    const html = `
+                <li class="card" data-task-id="${newId}" style="min-width: 30vw">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>${taskTitle}</b></h5>
+                        <p class="card-text">${taskDescription}</p>
+                        <p class="card-text">Assigned To:${taskAssignment}</p>
+                        <p class="card-text">Due By: ${taskDueDate}</p>
+                        <div class="card-footer row">
+                            <div class="col-6">
+                                <p class="card-text"><b>Status:</b> ${inputState}</p>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-outline-success doneBtn">
+                                    Done
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-outline-danger deleteBtn">
+                                    Delete
+                                </button>
+                            </div>
                         </div>
-                  <div>
-                  <div>
-                        <p class="card-text">${taskDueDate}</p>
-                        <p class="card-text">${inputState}</p>
-                  </div>
-                  <div class="mt-3">
-                        <a href="#" class="btn btn-primary">Details</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
-                  </div>
-                </div>
-               </li> `;
+                    </div>
+                </li>`;
               return html;
 };
 
@@ -53,6 +57,7 @@ class TaskManager{
             const formattedDate = 
             date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
             const taskHtml = createTaskHTML (
+                task.newId,
                 task.taskTitle,
                 task.taskDescription,
                 task.taskAssignment,
@@ -66,7 +71,17 @@ class TaskManager{
             const tasksList = document.querySelector("#task-list");
             
             tasksList.innerHTML = tasksHtml;
+        };
+    getTaskById(taskId){
+        let foundTask;
+        for(let i=0; i<this.tasks.length; i++){
+            const task = this.tasks[i];
+            if (task.newId === taskId){
+                foundTask = task;
+            }
         }
+        return foundTask;
+    };
 }
 
 
