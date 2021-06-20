@@ -1,3 +1,5 @@
+
+// Declare function createTaskHTML
 const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskDueDate, inputState) =>{
     const html = `
                 <li class="card" data-task-id="${newId}" style="min-width: 30vw">
@@ -26,15 +28,13 @@ const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskD
               return html;
 };
 
+// Declar TaskManager class
 class TaskManager{
-
     constructor(currentId = 0){
-        
         this.tasks = [];
         this.currentId = currentId;
     }
-   
-    
+    // addTask method of TaskManager class
     addTask (taskTitle, taskDescription, taskAssignment, taskDueDate, inputState){
         const newTask = {
             newId: this.currentId++,
@@ -45,10 +45,10 @@ class TaskManager{
             inputState: inputState,
         };
         this.tasks.push(newTask);
-        console.log(this.tasks)
+        //console.log(this.tasks)
         return this.tasks;
-
-    };
+    }; 
+    // End TaskManager lass
     render (){
         const taskHtmlList = [];
         for (let i=0; i<this.tasks.length; i++){
@@ -56,20 +56,12 @@ class TaskManager{
             const date = new Date (task.taskDueDate);
             const formattedDate = 
             date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-            const taskHtml = createTaskHTML (
-                task.newId,
-                task.taskTitle,
-                task.taskDescription,
-                task.taskAssignment,
-                formattedDate, 
-                task.inputState
-            );
+            const taskHtml = createTaskHTML (task.newId, task.taskTitle, task.taskDescription, task.taskAssignment,
+                                            formattedDate, task.inputState);
             taskHtmlList.push(taskHtml);
         }
             const tasksHtml = taskHtmlList.join("\n");
-            
             const tasksList = document.querySelector("#task-list");
-            
             tasksList.innerHTML = tasksHtml;
         };
     getTaskById(taskId){

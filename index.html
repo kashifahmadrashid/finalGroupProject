@@ -28,7 +28,7 @@
                 <div class="input-group has-success mb-5 d-flex flex-column"> 
                   <!-- Task title start -->
                   <label class="form-label me-3" for="name">Task Title:</label>
-                  <input class="form-control w-75" type="text" id="taskTitle" name="name" >
+                  <input class="form-control w-75" type="text" id="taskTitle" name="name" required>
                   <span id="errMsg1" class="msg1"></span>
                 </div>
               </div> 
@@ -40,7 +40,7 @@
                 <!-- Decription start -->
                 <div class="col .col-xs-12 .col-sm-6 .col-md-8">
                   <label class="form-label me-3" for="description">Decription:</label>
-                  <textarea class="form-control" id="taskDescription"></textarea>
+                  <textarea class="form-control" id="taskDescription" required></textarea>
                   <span id="errMsg2"></span>
                 </div>
               </div>
@@ -52,7 +52,7 @@
                 <!-- Assign to start -->
                 <div class=".col-xs-12 .col-sm-6 .col-md-8">
                   <label class="form-label me-3" for="assignedTo">Assigned To:</label>
-                  <input class="form-control" type="text" id="taskAssignment" name="assignedTo">
+                  <input class="form-control" type="text" id="taskAssignment" name="assignedTo" required>
                   <span id="errMsg3"></span>
                 </div>  
               </div>
@@ -63,7 +63,7 @@
               <!-- Due date start -->
               <div class=".col-xs-12 .col-sm-6 .col-md-8">
                 <label class="form-label me-3" for="dueDate"> Due Date:</label>
-                <input class="form-control" type="date" id="taskDueDate" name="dueDate">
+                <input class="form-control" type="date" id="taskDueDate" name="dueDate" required>
                 <span id="errMsg4"></span>
               </div>
             </div>
@@ -71,8 +71,9 @@
             <div class="col-1g-2 col-md-2">
               <div class="input-group mb-5">
                 <div class="col .col-xs-12 .col-sm-6 .col-md-8">
-                  <select class="form-select " aria-label="Status" id="inputState">
-                    <option selected>Status</option>
+                  <!-- <label class="form-label me-3" for="Status"> Select status:</label> -->
+                  <select class="form-select " aria-label="Status" id="inputState" required>
+                    <option value="">Select status</option>
                     <option value="To Do">To Do</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Review">Review</option>

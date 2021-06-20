@@ -16,70 +16,92 @@ addBtn.addEventListener("click", validFormInput );
 
 
 function validFormInput (e) {
-    var allPassed = true;
+    var allPassed = 0;
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
         errMsg1.innerHTML = "The Title shouldn\'t be less than 5 characters";
         document.querySelector("#errMsg1").style.color = "#ff0000";
         taskTitle.style.borderColor = "red";
         taskTitle.focus(); 
-        allPassed = false;
+        allPassed ++;
             }else {
                 errMsg1.innerHTML = "Looks Good";
+                errMsg1.style.color = "green";
                 taskTitle.style.borderColor = "green";
+                // allPassed = true;
             }
     if(taskDescription.value.trim() == "" || taskDescription.value.length < 5){
         errMsg2.innerHTML = "The Task Title must be greater than 5 characters"
         document.querySelector("#errMsg2").style.color = "#ff0000"
         taskDescription.style.borderColor = "red";
         taskDescription.focus();
-        allPassed = false;
+        allPassed ++;
             }else {
                 errMsg2.innerHTML = "Looks Good";
+                errMsg2.style.color = "green";
                 taskDescription.style.borderColor = "green";
+                // allPassed = true;
             }
     if(taskAssignment.value.trim() == "" || taskAssignment.value.length < 2){
         errMsg3.innerHTML = "Please assign task to someone";
         document.querySelector("#errMsg3").style.color = "#ff0000"
         taskAssignment.style.borderColor = "red";
         taskAssignment.focus();
-        allPassed = false;
+        allPassed ++;
             }else {
                 errMsg3.innerHTML = "Looks Good";
+                errMsg3.style.color = "green";
                 taskAssignment.style.borderColor = "green";
+                // allPassed = true;
             }
     if(taskDueDate.value == ""){
         errMsg4.innerHTML = "Please select a date from the calendar";
         document.querySelector("#errMsg4").style.color = "#ff0000"
         taskDueDate.style.borderColor = "red";
         taskDueDate.focus();
-        allPassed = false;
+        allPassed ++;
             }else {
                 errMsg4.innerHTML = "Looks Good";
+                errMsg4.style.color = "green";
                 taskDueDate.style.borderColor = "green";
+                // allPassed = true;
             }
-    if(taskStatus.value == "Status"){
+    if(taskStatus.value == ""){
         errMsg5.innerHTML = "Please select a task status";
         document.querySelector("#errMsg5").style.color = "#ff0000"
         taskStatus.style.borderColor = "red";
         taskStatus.focus();
-        allPassed = false;
+        allPassed ++;
             }else {
                 errMsg5.innerHTML = "Looks Good";
+                errMsg5.style.color = "green";
                 taskStatus.style.borderColor = "green";
+                // allPassed = true;
             }
-    if (allPassed){
-        newTask.addTask(taskTitle.value, taskDescription.value, taskAssignment.value, taskDueDate.value, taskStatus.value)
+    const clearFormInput = () => {
+        taskTitle.value="";
+        taskTitle.style.borderColor = "grey"
+        taskDescription.value="";
+        taskDescription.style.borderColor = "grey"
+        taskAssignment.value="";
+        taskAssignment.style.borderColor = "grey"
+        dueDate.value="";
+        dueDate.style.borderColor = "grey"
+        taskStatus.value="";
+        taskStatus.style.borderColor = "grey"
+        errMsg1.innerHTML = "";
+        errMsg2.innerHTML = "";
+        errMsg3.innerHTML = "";
+        errMsg4.innerHTML = "";
+        errMsg5.innerHTML = "";
     }
-    const taskHtml = createTaskHTML(taskTitle.value, taskDescription.value, taskAssignment.value, taskDueDate.value,
-			taskStatus.value);
-		    console.log(taskHtml);
-            newTask.render();
-
-                // taskTitle.value="";
-                // taskDescription.value="";
-                // taskAssignment.value="";
-                // dueDate.value="";
-                // taskStatus.value="";
+    if (allPassed > 0) {
+        allPassed = 0;
+        return;
+    } else {
+        newTask.addTask(taskTitle.value, taskDescription.value, taskAssignment.value, taskDueDate.value, taskStatus.value)
+        clearFormInput();
+        newTask.render();
+    }
     
 e.preventDefault();
 }
