@@ -1,10 +1,13 @@
 const newTask = new TaskManager(0);
 
+newTask.load();
+newTask.render();
+
 let taskTitle = document.querySelector("#taskTitle");
 let taskDescription = document.querySelector("#taskDescription");
 let taskAssignment = document.querySelector("#taskAssignment");
 let dueDate = document.querySelector("#taskDueDate");
-let taskStatus = document.querySelector("#inputState");
+let taskStatus = document.querySelector("#inputStatus");
 let errMsg1= document.querySelector("#errMsg1");
 let errMsg2 = document.querySelector("#errMsg2");
 let errMsg3 = document.querySelector("#errMsg3");
@@ -16,13 +19,13 @@ addBtn.addEventListener("click", validFormInput );
 
 
 function validFormInput (e) {
-    var allPassed = 0;
+    var allPassed = true;
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
         errMsg1.innerHTML = "The Title shouldn\'t be less than 5 characters";
         document.querySelector("#errMsg1").style.color = "#ff0000";
         taskTitle.style.borderColor = "red";
         taskTitle.focus(); 
-        allPassed ++;
+        allPassed = false;
             }else {
                 errMsg1.innerHTML = "Looks Good";
                 errMsg1.style.color = "green";
@@ -34,7 +37,7 @@ function validFormInput (e) {
         document.querySelector("#errMsg2").style.color = "#ff0000"
         taskDescription.style.borderColor = "red";
         taskDescription.focus();
-        allPassed ++;
+        allPassed = false;
             }else {
                 errMsg2.innerHTML = "Looks Good";
                 errMsg2.style.color = "green";
@@ -46,7 +49,7 @@ function validFormInput (e) {
         document.querySelector("#errMsg3").style.color = "#ff0000"
         taskAssignment.style.borderColor = "red";
         taskAssignment.focus();
-        allPassed ++;
+        allPassed = false;
             }else {
                 errMsg3.innerHTML = "Looks Good";
                 errMsg3.style.color = "green";
@@ -58,7 +61,7 @@ function validFormInput (e) {
         document.querySelector("#errMsg4").style.color = "#ff0000"
         taskDueDate.style.borderColor = "red";
         taskDueDate.focus();
-        allPassed ++;
+        allPassed = false;
             }else {
                 errMsg4.innerHTML = "Looks Good";
                 errMsg4.style.color = "green";
@@ -70,7 +73,7 @@ function validFormInput (e) {
         document.querySelector("#errMsg5").style.color = "#ff0000"
         taskStatus.style.borderColor = "red";
         taskStatus.focus();
-        allPassed ++;
+        allPassed = false;
             }else {
                 errMsg5.innerHTML = "Looks Good";
                 errMsg5.style.color = "green";
@@ -94,17 +97,18 @@ function validFormInput (e) {
         errMsg4.innerHTML = "";
         errMsg5.innerHTML = "";
     }
-    if (allPassed > 0) {
-        allPassed = 0;
-        return;
-    } else {
+    if (allPassed) {
+          
         newTask.addTask(taskTitle.value, taskDescription.value, taskAssignment.value, taskDueDate.value, taskStatus.value)
         clearFormInput();
+        newTask.save();
         newTask.render();
     }
     
 e.preventDefault();
 }
+
+
 
 // Get the Id of individual task
 const taskList = document.querySelector("#task-list");
@@ -113,7 +117,33 @@ taskList.addEventListener("click",(event) => {
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         const task = newTask.getTaskById(taskId);
-        task.inputState = "Done";
+        task.inputStatus = "Done";
+        
+        newTask.save();
         newTask.render();
+        //event.target.classList.add("hideButton");
+        //hideDoneButton();
+        //newTask.save();
+        
     }
-});
+    if (event.target.classList.contains("deleteBtn")) {
+        // Get the parent Task
+        const parentTask =
+          event.target.parentElement.parentElement.parentElement.parentElement;
+    
+        // Get the taskId of the parent Task.
+        const taskId = Number(parentTask.dataset.taskId);
+    
+        // Delete the task
+        newTask.deleteTask(taskId);
+    
+        // Save the tasks to localStorage
+        newTask.save();
+    
+        // Render the tasks
+        newTask.render();
+      }
+    });
+
+
+    
