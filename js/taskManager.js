@@ -13,7 +13,7 @@ const createTaskHTML = (Id, taskTitle, taskDescription, taskAssignment, taskDueD
                                 <p class="card-text"><b>Status:</b> ${inputStatus}</p>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-outline-success doneBtn">
+                                <button class="btn btn-outline-success doneBtn" id="${Id}">
                                     Done
                                 </button>
                             </div>
@@ -35,14 +35,14 @@ class TaskManager{
         this.currentId = currentId;
     }
     // addTask method of TaskManager class
-    addTask (taskTitle, taskDescription, taskAssignment, taskDueDate, inputStatus){
+    addTask (taskTitle, taskDescription, taskAssignment, taskDueDate, taskStatus){
         const newTask = {
             newId: this.currentId++,
             taskTitle: taskTitle,
             taskDescription: taskDescription,
             taskAssignment: taskAssignment,
             taskDueDate: taskDueDate,
-            inputStatus: inputStatus,
+            Status: taskStatus,
         };
         this.tasks.push(newTask);
         //console.log(this.tasks)
@@ -57,7 +57,8 @@ class TaskManager{
             const formattedDate = 
             date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
             const taskHtml = createTaskHTML (task.newId, task.taskTitle, task.taskDescription, task.taskAssignment,
-                                            formattedDate, task.inputStatus);
+                                            formattedDate, task.Status);
+                                     
             // Push it to the tasksHtmlList array                                
             taskHtmlList.push(taskHtml);  
             }        
@@ -66,11 +67,18 @@ class TaskManager{
             const tasksHtml = taskHtmlList.join("\n");
             const tasksList = document.querySelector("#task-list");
             tasksList.innerHTML = tasksHtml;
+            // for(let i=0; i<this.tasks.length; i++) {
+                            
+            //                 if(this.tasks[i].inputStatus==="Done") {
+            //                     document.getElementById("Id").style.display="none";
+            //                 }
+            //                     }
         
     };
+
     getTaskById(taskId){
         let foundTask;
-        for(let i=0; i<this.tasks.length; i++){
+        for(let i=0; i<this.tasks.length; i++) {
             const task = this.tasks[i];
             if (task.newId === taskId){
                 foundTask = task;
@@ -140,3 +148,5 @@ class TaskManager{
             //         document.getElementsByClassName("btn").style.display="none";
             //     }
             //         }
+
+

@@ -111,14 +111,16 @@ e.preventDefault();
 
 
 // Get the Id of individual task
+//const buttonId = document.getElementById("Id");
 const taskList = document.querySelector("#task-list");
 taskList.addEventListener("click",(event) => {
     if (event.target.classList.contains("doneBtn")){
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         const task = newTask.getTaskById(taskId);
-        task.inputStatus = "Done";
-        
+        task.Status = "Done";
+       // document.getElementById("Id").innerHTML="";
+        //newTask.hidenDoneButton();
         newTask.save();
         newTask.render();
         //event.target.classList.add("hideButton");
