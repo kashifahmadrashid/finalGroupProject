@@ -1,7 +1,7 @@
-const newTask = new TaskManager(0);
+const taskManager = new TaskManager(0);
 
-newTask.load();
-newTask.render();
+taskManager.load();
+taskManager.render();
 
 let taskTitle = document.querySelector("#taskTitle");
 let taskDescription = document.querySelector("#taskDescription");
@@ -99,16 +99,15 @@ function validFormInput (e) {
     }
     if (allPassed) {
           
-        newTask.addTask(taskTitle.value, taskDescription.value, taskAssignment.value, taskDueDate.value, taskStatus.value)
+        taskManager.addTask(taskTitle.value, taskDescription.value, taskAssignment.value, taskDueDate.value, taskStatus.value)
         clearFormInput();
-        newTask.save();
-        newTask.render();
+        
+        taskManager.save();
+        taskManager.render();
     }
     
 e.preventDefault();
 }
-
-
 
 // Get the Id of individual task
 //const buttonId = document.getElementById("Id");
@@ -117,35 +116,33 @@ taskList.addEventListener("click",(event) => {
     if (event.target.classList.contains("doneBtn")){
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
-        const task = newTask.getTaskById(taskId);
-        task.Status = "Done";
-       // document.getElementById("Id").innerHTML="";
-        //newTask.hidenDoneButton();
-        newTask.save();
-        newTask.render();
-        //event.target.classList.add("hideButton");
-        //hideDoneButton();
-        //newTask.save();
+        const taskA = taskManager.getTaskById(taskId);
+        taskA.Status = "Done";       
+        taskManager.save();
+        taskManager.render();
+        //const id = Number(event.target.id);
+        //document.getElementById(id).style.display = "none";
+        //console.log(eventID);
         
-    }
-    if (event.target.classList.contains("deleteBtn")) {
+        
+        
+     }
+    
+     if (event.target.classList.contains("deleteBtn")) {
         // Get the parent Task
         const parentTask =
           event.target.parentElement.parentElement.parentElement.parentElement;
-    
-        // Get the taskId of the parent Task.
+            // Get the taskId of the parent Task.
         const taskId = Number(parentTask.dataset.taskId);
-    
-        // Delete the task
-        newTask.deleteTask(taskId);
-    
-        // Save the tasks to localStorage
-        newTask.save();
-    
-        // Render the tasks
-        newTask.render();
+           // Delete the task
+            taskManager.deleteTask(taskId);
+            // Save the tasks to localStorage
+            taskManager.save();
+            // Render the tasks
+            taskManager.render();
       }
     });
 
-
+console.log(taskManager.currentId);
+console.log(taskObject.objectId);
     

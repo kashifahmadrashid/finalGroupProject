@@ -3,14 +3,14 @@
 const createTaskHTML = (Id, taskTitle, taskDescription, taskAssignment, taskDueDate, inputStatus) =>{
     const html = `
                 <li class="card" data-task-id="${Id}" style="min-width: 30vw">
-                    <div class="card-body">
+                    <div class="card-body a">
                         <h5 class="card-title"><b>${taskTitle}</b></h5>
                         <p class="card-text">${taskDescription}</p>
                         <p class="card-text">Assigned To:${taskAssignment}</p>
                         <p class="card-text">Due By: ${taskDueDate}</p>
-                        <div class="card-footer row">
+                        <div class="card-footer row b">
                             <div class="col-6">
-                                <p class="card-text"><b>Status:</b> ${inputStatus}</p>
+                                <p class="card-text" id="${inputStatus}"><b>Status:</b> ${inputStatus}</p>
                             </div>
                             <div class="col-3">
                                 <button class="btn btn-outline-success doneBtn" id="${Id}">
@@ -36,15 +36,15 @@ class TaskManager{
     }
     // addTask method of TaskManager class
     addTask (taskTitle, taskDescription, taskAssignment, taskDueDate, taskStatus){
-        const newTask = {
-            newId: this.currentId++,
+        const taskObject = {
+            objectId: this.currentId++,
             taskTitle: taskTitle,
             taskDescription: taskDescription,
             taskAssignment: taskAssignment,
             taskDueDate: taskDueDate,
             Status: taskStatus,
         };
-        this.tasks.push(newTask);
+        this.tasks.push(taskObject);
         //console.log(this.tasks)
         return this.tasks;
     }; 
@@ -56,23 +56,34 @@ class TaskManager{
             const date = new Date (task.taskDueDate);
             const formattedDate = 
             date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-            const taskHtml = createTaskHTML (task.newId, task.taskTitle, task.taskDescription, task.taskAssignment,
+            //console.log(this.tasks[i].Status)
+            const taskHtml = createTaskHTML (task.objectId, task.taskTitle, task.taskDescription, task.taskAssignment,
                                             formattedDate, task.Status);
-                                     
+            //  console.log(task); 
+            //  console.log(this.tasks[i].Status); 
+            //  console.log(this.tasks[i].newId); 
+            //  console.log(taskHtml)
+        
+             for (let i=0; i<this.tasks.length; i++){
+                if(this.tasks[i].Status === "Done"){
+                    const task = this.tasks[i];
+                    //console.log(this.tasks[i].newId);
+                }                   
+             }   
             // Push it to the tasksHtmlList array                                
-            taskHtmlList.push(taskHtml);  
-            }        
+             taskHtmlList.push(taskHtml);  
+            }          
+            // for(let i=0; i<this.tasks.length; i++) {
+            // if(this.tasks[i].Status == "Done") {
+            //         document.getElementById("id").style.display="none";
+            // };        
+            // };
             // Create the tasksHtml by joining each item in the tasksHtmlList
             // with a new line in between each item.
             const tasksHtml = taskHtmlList.join("\n");
             const tasksList = document.querySelector("#task-list");
             tasksList.innerHTML = tasksHtml;
-            // for(let i=0; i<this.tasks.length; i++) {
-                            
-            //                 if(this.tasks[i].inputStatus==="Done") {
-            //                     document.getElementById("Id").style.display="none";
-            //                 }
-            //                     }
+            
         
     };
 
@@ -80,7 +91,7 @@ class TaskManager{
         let foundTask;
         for(let i=0; i<this.tasks.length; i++) {
             const task = this.tasks[i];
-            if (task.newId === taskId){
+            if (task.objectId === taskId){
                 foundTask = task;
             }
         }
@@ -90,13 +101,10 @@ class TaskManager{
     save() {
         // Create a JSON string of the tasks
         const tasksJson = JSON.stringify(this.tasks);
-    
         // Store the JSON string in localStorage
         localStorage.setItem("tasks", tasksJson);
-    
         // Convert the currentId to a string;
         const currentId = String(this.currentId);
-    
         // Store the currentId in localStorage
         localStorage.setItem("currentId", currentId);
       }
@@ -104,10 +112,9 @@ class TaskManager{
       load() {
         // Check if any tasks are saved in localStorage
         if (localStorage.getItem("tasks")) {
-          // Get the JSON string of tasks in localStorage
+        // Get the JSON string of tasks in localStorage
           const tasksJson = localStorage.getItem("tasks");
-    
-          // Convert it to an array and store it in our TaskManager
+        // Convert it to an array and store it in our TaskManager
           this.tasks = JSON.parse(tasksJson);
         }
     
@@ -123,30 +130,23 @@ class TaskManager{
       deleteTask(taskId) {
         // Create an empty array and store it in a new variable, newTasks
         const newTasks = [];
-    
         // Loop over the tasks
         for (let i = 0; i < this.tasks.length; i++) {
           // Get the current task in the loop
           const task = this.tasks[i];
-    
           // Check if the task id is not the task id passed in as a parameter
-          if (task.newId !== taskId) {
+          if (task.objectId !== taskId) {
             // Push the task to the newTasks array
             newTasks.push(task);
+            
           }
         }
-    
-        // Set this.tasks to newTasks
+        // Set newTasks to this.tasks
         this.tasks = newTasks;
         
       }
 };
 
-// for(let i=0; i<taskHtmlList.length; i++);{
-            //     const taskA = taskHtmlList[i];
-            //     if(taskA.inputStatus==="Done") {
-            //         document.getElementsByClassName("btn").style.display="none";
-            //     }
-            //         }
+
 
 
