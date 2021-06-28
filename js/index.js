@@ -119,11 +119,11 @@ taskList.addEventListener("click",(event) => {
         taskA.Status = "Done";       
         taskManager.save();
         taskManager.render();
-        if(taskA.Status === "Done"){
+        // if(taskA.Status === "Done"){
             
-            document.getElementById(taskId).remove();
+        //     document.getElementById(taskId).remove();
             
-        };
+        // };
         //console.log(taskManager.currentId);
         //console.log(taskA.objectId);
     
