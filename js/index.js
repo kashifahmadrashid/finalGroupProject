@@ -1,4 +1,6 @@
 const newTask = new TaskManager(0);
+newTask.load();
+newTask.render();
 
 let taskTitle = document.querySelector("#taskTitle");
 let taskDescription = document.querySelector("#taskDescription");
@@ -18,7 +20,7 @@ addBtn.addEventListener("click", validFormInput );
 function validFormInput (e) {
     var allPassed = true;
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
-        errMsg1.innerHTML = "The Title shouldn\'t be less than 5 characters";
+        errMsg1.innerHTML = "The Title must be greater than 5 characters";
         document.querySelector("#errMsg1").style.color = "#ff0000";
         taskTitle.focus(); 
         allPassed = false;
@@ -49,7 +51,7 @@ function validFormInput (e) {
     }else {
         errMsg4.innerHTML = "Looks Good";
     }
-    if(taskStatus.value == "Status"){
+    if(taskStatus.value == "Status" || taskStatus.value == ""){
         errMsg5.innerHTML = "Please select a task status";
         document.querySelector("#errMsg5").style.color = "#ff0000"
         taskStatus.focus();
@@ -68,26 +70,28 @@ function validFormInput (e) {
 			taskStatus.value
 		);
 		console.log(taskHtml);
-        newTask.render();
+        
 
     taskTitle.value="";
     taskDescription.value="";
     taskAssignment.value="";
     dueDate.value="";
     taskStatus.value="";
-    
+    newTask.save();
+    newTask.render();
 e.preventDefault();
 }
 
 const taskList = document.querySelector("#task-list");
 
 
+
 taskList.addEventListener("click",(event) => {
+    
     if (event.target.classList.contains("doneBtn")){
       
     
     const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-    
     
     const taskId = Number(parentTask.dataset.taskId);
     
@@ -95,8 +99,21 @@ taskList.addEventListener("click",(event) => {
     
     task.inputState = "Done";
     
-    newTask.render();
-}
+          
+    newTask.save();
+
+	newTask.render();
+    }
+
+
+    if (event.target.classList.contains("deleteBtn")){
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+        const taskId = Number(parentTask.dataset.taskId);
+        newTask.deleteTask(taskId);
+        newTask.save();
+        newTask.render();
+	}
+
 });
 
 
