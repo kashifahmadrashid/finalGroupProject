@@ -1,4 +1,6 @@
 const newTask = new TaskManager(0);
+newTask.load();
+newTask.render();
 
 let taskTitle = document.querySelector("#taskTitle");
 let taskDescription = document.querySelector("#taskDescription");
@@ -13,52 +15,86 @@ let errMsg5 = document.querySelector("#errMsg5");
 let addBtn = document.querySelector("#addBtn");
 addBtn.addEventListener("click", validFormInput );
 
-
-
 function validFormInput (e) {
     var allPassed = true;
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
-        errMsg1.innerHTML = "The Title shouldn\'t be less than 5 characters";
-        document.querySelector("#errMsg1").style.color = "#ff0000";
+        errMsg1.innerHTML = "The Title must be greater than 5 characters";
+        errMsg1.style.color = "#ff0000";
+        taskTitle.style.borderColor = "#ff0000";
         taskTitle.focus(); 
         allPassed = false;
     } else {
         errMsg1.innerHTML = "Looks Good";
+        errMsg1.style.color = "green";
+        taskTitle.style.borderColor = "green";
+ 
     }
     if(taskDescription.value.trim() == "" || taskDescription.value.length < 5){
         errMsg2.innerHTML = "The Task Title must be greater than 5 characters"
-        document.querySelector("#errMsg2").style.color = "#ff0000"
+        errMsg2.style.color = "#ff0000";
+        taskDescription.style.borderColor = "#ff0000";
         taskDescription.focus();
         allPassed = false;
     }else {
         errMsg2.innerHTML = "Looks Good";
+        errMsg2.style.color = "green";
+        taskDescription.style.borderColor = "green";
+      
     }
     if(taskAssignment.value.trim() == "" || taskAssignment.value.length < 2){
         errMsg3.innerHTML = "Please assign task to someone";
-        document.querySelector("#errMsg3").style.color = "#ff0000"
+        errMsg3.style.color = "#ff0000";
+        taskAssignment.style.borderColor = "#ff0000";
         taskAssignment.focus();
         allPassed = false;
     }else {
         errMsg3.innerHTML = "Looks Good";
+        errMsg3.style.color = "green";
+        taskAssignment.style.borderColor = "green";
+       
     }
-    if(taskDueDate.value == ""){
+    if(dueDate.value == ""){
         errMsg4.innerHTML = "Please select a date from the calendar";
-        document.querySelector("#errMsg4").style.color = "#ff0000"
-        taskDueDate.focus();
+        errMsg4.style.color = "#ff0000";
+        dueDate.style.borderColor = "#ff0000";
+        dueDate.focus();
         allPassed = false;
     }else {
         errMsg4.innerHTML = "Looks Good";
+        errMsg4.style.color = "green";
+        taskDueDate.style.borderColor = "green";
+       
     }
-    if(taskStatus.value == "Status"){
+    if(taskStatus.value == "Status" || taskStatus.value == ""){
         errMsg5.innerHTML = "Please select a task status";
-        document.querySelector("#errMsg5").style.color = "#ff0000"
+        errMsg5.style.color="#ff0000";
+        taskStatus.style.borderColor = "#ff0000";
         taskStatus.focus();
         allPassed = false;
     }else {
         errMsg5.innerHTML = "Looks Good";
+        errMsg5.style.color = "green";
+        taskStatus.style.borderColor = "green";
+        
     }
+
     if (allPassed){
         newTask.addTask(taskTitle.value, taskDescription.value, taskAssignment.value, taskDueDate.value, taskStatus.value)
+        taskTitle.value = "";
+		taskDescription.value = "";
+		taskAssignment.value = "";
+		dueDate.value = "";
+		taskStatus.value = "";
+        errMsg1.innerHTML = "";
+		errMsg2.innerHTML = "";
+		errMsg3.innerHTML = "";
+		errMsg4.innerHTML = "";
+		errMsg5.innerHTML = "";
+        taskTitle.style.borderColor = "grey";
+        taskDescription.style.borderColor = "grey";
+        taskAssignment.style.borderColor = "grey";
+        taskDueDate.style.borderColor = "grey";
+        taskStatus.style.borderColor = "grey";
     }
     const taskHtml = createTaskHTML(
 			taskTitle.value,
@@ -68,26 +104,20 @@ function validFormInput (e) {
 			taskStatus.value
 		);
 		console.log(taskHtml);
-        newTask.render();
-
-    taskTitle.value="";
-    taskDescription.value="";
-    taskAssignment.value="";
-    dueDate.value="";
-    taskStatus.value="";
-    
+        
+  
+    newTask.save();
+    newTask.render();
 e.preventDefault();
 }
 
 const taskList = document.querySelector("#task-list");
 
-
 taskList.addEventListener("click",(event) => {
+    
     if (event.target.classList.contains("doneBtn")){
-      
-    
+       
     const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-    
     
     const taskId = Number(parentTask.dataset.taskId);
     
@@ -95,8 +125,21 @@ taskList.addEventListener("click",(event) => {
     
     task.inputState = "Done";
     
-    newTask.render();
-}
+          
+    newTask.save();
+
+	newTask.render();
+    }
+
+
+    if (event.target.classList.contains("deleteBtn")){
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+        const taskId = Number(parentTask.dataset.taskId);
+        newTask.deleteTask(taskId);
+        newTask.save();
+        newTask.render();
+	}
+
 });
 
 

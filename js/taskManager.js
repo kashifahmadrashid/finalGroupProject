@@ -1,6 +1,6 @@
 const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskDueDate, inputState) =>{
     const html = `
-                <li class="card" data-task-id="${newId}" style="min-width: 30vw">
+                <li class="card" data-task-id="${newId}" style="min-width: 30vw ">
                     <div class="card-body">
                         <h5 class="card-title"><b>${taskTitle}</b></h5>
                         <p class="card-text">${taskDescription}</p>
@@ -11,7 +11,7 @@ const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskD
                                 <p class="card-text"><b>Status:</b> ${inputState}</p>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-outline-success doneBtn">
+                                <button class="btn btn-outline-success doneBtn ${inputState === "Done" ? "d-none" : ""}">
                                     Done
                                 </button>
                             </div>
@@ -48,7 +48,7 @@ class TaskManager{
         console.log(this.tasks)
         return this.tasks;
 
-    };
+    }
     render (){
         const taskHtmlList = [];
         for (let i=0; i<this.tasks.length; i++){
@@ -71,7 +71,7 @@ class TaskManager{
             const tasksList = document.querySelector("#task-list");
             
             tasksList.innerHTML = tasksHtml;
-        };
+        }
     getTaskById(taskId){
         let foundTask;
         for(let i=0; i<this.tasks.length; i++){
@@ -81,8 +81,48 @@ class TaskManager{
             }
         }
         return foundTask;
-    };
+    }
+
+    save() {
+        const tasksJson = JSON.stringify(this.tasks);
+        localStorage.setItem("taskKey", tasksJson);
+        const currentIdJson = String(this.currentId);
+        localStorage.setItem("currentIdKey", currentIdJson);
+
+    }
+
+    load() {
+        
+        if (localStorage.getItem("taskKey")){
+            const tasksJson = localStorage.getItem("taskKey");
+            this.tasks = JSON.parse(tasksJson);
+        }
+        
+        if (localStorage.getItem("currentIdKey")){
+            const currentIdJson = localStorage.getItem("currentIdKey");
+            this.currentId = Number(currentIdJson);
+        }
+    }
+
+    deleteTask(taskId) {
+        const newTasks = [];
+        
+        for (let i=0; i < this.tasks.length; i++){
+           const task = this.tasks[i];
+            if (task.newId !== taskId){
+                newTasks.push(task);
+            }
+        }
+        this.tasks = newTasks;
+      
+    }
+    
+   
 }
+    
+    
+
+
 
 
     
