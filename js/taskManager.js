@@ -13,7 +13,7 @@ const createTaskHTML = (Id, taskTitle, taskDescription, taskAssignment, taskDueD
                                 <p class="card-text" id="${inputStatus}"><b>Status:</b> ${inputStatus}</p>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-outline-success doneBtn" id="${Id}">
+                                <button class="btn btn-outline-success doneBtn" type="button" id="${Id}">
                                     Done
                                 </button>
                             </div>
@@ -47,6 +47,8 @@ class TaskManager{
         this.tasks.push(taskObject);
         //console.log(this.tasks)
         return this.tasks;
+        
+       
     }; 
     // End TaskManager lass
     render (){
@@ -59,16 +61,30 @@ class TaskManager{
             //console.log(this.tasks[i].Status)
             const taskHtml = createTaskHTML (task.objectId, task.taskTitle, task.taskDescription, task.taskAssignment,
                                             formattedDate, task.Status);
-            //  console.log(task); 
+            //console.log(task); 
             //  console.log(this.tasks[i].Status); 
             //  console.log(this.tasks[i].newId); 
-            //  console.log(taskHtml)
-        
+              //console.log(taskHtml)
+                const doneArray = [];
+                const reviewArray = [];
+                const inprocessArray = [];
+                const todoArray = [];
              for (let i=0; i<this.tasks.length; i++){
+                const tasks = this.tasks[i];
                 if(this.tasks[i].Status === "Done"){
-                    const task = this.tasks[i];
+                    //button.id.style.display="none";
+                    doneArray.push(tasks);
+                    console.log(tasks.objectId)              
+                   //document.getElementById("id").style.display="none";
+                    //console.log(task);
                     //console.log(this.tasks[i].newId);
-                }                   
+                } else if(this.tasks[i].Status === "To Do") {
+                    todoArray.push(tasks);
+                    } else if(this.tasks[i].Status === "Review") {
+                        reviewArray.push(tasks);
+                        } else if(this.tasks[i].Status === "In Process") {
+                            inprocessArray.push(tasks);
+                            }                 
              }   
             // Push it to the tasksHtmlList array                                
              taskHtmlList.push(taskHtml);  

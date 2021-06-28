@@ -100,8 +100,7 @@ function validFormInput (e) {
     if (allPassed) {
           
         taskManager.addTask(taskTitle.value, taskDescription.value, taskAssignment.value, taskDueDate.value, taskStatus.value)
-        clearFormInput();
-        
+        clearFormInput();   
         taskManager.save();
         taskManager.render();
     }
@@ -120,13 +119,19 @@ taskList.addEventListener("click",(event) => {
         taskA.Status = "Done";       
         taskManager.save();
         taskManager.render();
+        if(taskA.Status === "Done"){
+            
+            document.getElementById(taskId).remove();
+            
+        };
+        //console.log(taskManager.currentId);
+        //console.log(taskA.objectId);
+    
         //const id = Number(event.target.id);
-        //document.getElementById(id).style.display = "none";
+        //document.getElementById(taskId).style.display = "none";
         //console.log(eventID);
-        
-        
-        
      }
+     
     
      if (event.target.classList.contains("deleteBtn")) {
         // Get the parent Task
@@ -143,6 +148,4 @@ taskList.addEventListener("click",(event) => {
       }
     });
 
-console.log(taskManager.currentId);
-console.log(taskObject.objectId);
-    
+
