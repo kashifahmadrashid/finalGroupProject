@@ -13,11 +13,14 @@
 <body>
   <!-- header starts here -->
   <header>
-    <h1>My Task Planner</h1>
+    <div class="heading">
+      <h1>My Task Planner</h1>
+    </div>
   </header>
   <!-- header ends here -->
   <main>
     <!-- form start here -->
+    <section>
     <form id="task-form">
       <div class="container">
         <div class="row .col-xs-12 .col-sm-6 .col-md-8">
@@ -82,9 +85,8 @@
                 </div>
               </div>
             </div>
-
-    
     </form>
+   
     <div class="input-group mb-5">
       <div class="col-6">
         <button class="btn btn-primary" type="submit" id="addBtn">Add task</button>
@@ -92,9 +94,10 @@
     </div>
     <div class="image" id="schedule">
       <img src="./css/images/undraw_events_2p66.png" alt="plannerImage">
-      
     </div>
-    <div>
+  </section>
+  <section class="list-container">
+    <div id="list-container">
     <!-- form end here -->
     <!-- List group starts here -->
     <!-- <div class="container border">
@@ -212,6 +215,7 @@
                 </li>  -->
             </ul>
     </div>
+    </section>
         <!-- </div>
     </div>
   </div>

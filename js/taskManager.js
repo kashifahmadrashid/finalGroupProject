@@ -1,6 +1,6 @@
 const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskDueDate, inputState) =>{
     const html = `
-                <li class="card" data-task-id="${newId}" style="min-width: 30vw">
+                <li class="card" data-task-id="${newId}" style="min-width: 30vw ">
                     <div class="card-body">
                         <h5 class="card-title"><b>${taskTitle}</b></h5>
                         <p class="card-text">${taskDescription}</p>
@@ -11,7 +11,7 @@ const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskD
                                 <p class="card-text"><b>Status:</b> ${inputState}</p>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-outline-success doneBtn hide">
+                                <button class="btn btn-outline-success doneBtn ${inputState === "Done" ? "d-none" : ""}">
                                     Done
                                 </button>
                             </div>
