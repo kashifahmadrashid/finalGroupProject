@@ -93,7 +93,7 @@ class TaskManager{
             console.log(inprocessArray);
             const inProcessList = document.querySelector("#task-list3");
             inProcessList.innerHTML = inProcessHtml;
-            //add the review Html to todoListHTML
+            //add the reviewHtml to reviewListHTML
             const reviewHtml = reviewArray.join("\n");
             const reviewList = document.querySelector("#task-list4");
             reviewList.innerHTML = reviewHtml;
