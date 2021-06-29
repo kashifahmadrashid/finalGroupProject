@@ -119,19 +119,12 @@ taskList.addEventListener("click",(event) => {
         taskA.Status = "Done";       
         taskManager.save();
         taskManager.render();
-        // if(taskA.Status === "Done"){
-            
-        //     document.getElementById(taskId).remove();
-            
-        // };
+               
         //console.log(taskManager.currentId);
         //console.log(taskA.objectId);
-    
-        //const id = Number(event.target.id);
-        //document.getElementById(taskId).style.display = "none";
-        //console.log(eventID);
+        //console.log(Number(event.target.id));
+        //console.log(Number(taskId)); 
      }
-     
     
      if (event.target.classList.contains("deleteBtn")) {
         // Get the parent Task
