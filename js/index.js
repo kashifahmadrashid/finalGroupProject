@@ -20,6 +20,10 @@ addBtn.addEventListener("click", validFormInput );
 
 function validFormInput (e) {
     var allPassed = true;
+    var GivenDate = taskDueDate.value;
+    var CurrentDate = new Date();
+    GivenDate = new Date(GivenDate);
+    
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
         errMsg1.innerHTML = "The Title shouldn\'t be less than 5 characters";
         document.querySelector("#errMsg1").style.color = "#ff0000";
@@ -56,18 +60,18 @@ function validFormInput (e) {
                 taskAssignment.style.borderColor = "green";
                 // allPassed = true;
             }
-    if(taskDueDate.value == ""){
-        errMsg4.innerHTML = "Please select a date from the calendar";
+    if(taskDueDate.value == "" || GivenDate < CurrentDate){
+        errMsg4.innerHTML = "Please select a date after today";
         document.querySelector("#errMsg4").style.color = "#ff0000"
         taskDueDate.style.borderColor = "red";
         taskDueDate.focus();
         allPassed = false;
-            }else {
-                errMsg4.innerHTML = "Looks Good";
-                errMsg4.style.color = "green";
-                taskDueDate.style.borderColor = "green";
-                // allPassed = true;
-            }
+    }else if(GivenDate >= CurrentDate){
+        errMsg4.innerHTML = "Looks Good";
+        errMsg4.style.color = "green";
+        taskDueDate.style.borderColor = "green";
+    }
+        
     if(taskStatus.value == ""){
         errMsg5.innerHTML = "Please select a task status";
         document.querySelector("#errMsg5").style.color = "#ff0000"
@@ -109,9 +113,35 @@ e.preventDefault();
 }
 
 // Get the Id of individual task
-//const buttonId = document.getElementById("Id");
+const taskList0 = document.querySelector("#task-list0");
+taskList0.addEventListener("click",(event) => {
+    if (event.target.classList.contains("doneBtn")){
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+        const taskId = Number(parentTask.dataset.taskId);
+        const taskA = taskManager.getTaskById(taskId);
+        taskA.Status = "Done";       
+        taskManager.save();
+        taskManager.render();
+        //console.log(Number(event.target.id));
+        //console.log(Number(taskId)); 
+     }
+    
+     if (event.target.classList.contains("deleteBtn")) {
+        // Get the parent Task
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+            // Get the taskId of the parent Task.
+        const taskId = Number(parentTask.dataset.taskId);
+           // Delete the task
+            taskManager.deleteTask(taskId);
+            location.reload()
+            // Save the tasks to localStorage
+            taskManager.save();
+            // Render the tasks
+            taskManager.render();
+      }
+    });
+
 const taskList1 = document.querySelector("#task-list1");
-//const taskList2 = document.querySelector("#task-list4");
 taskList1.addEventListener("click",(event) => {
     if (event.target.classList.contains("doneBtn")){
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
@@ -120,21 +150,18 @@ taskList1.addEventListener("click",(event) => {
         taskA.Status = "Done";       
         taskManager.save();
         taskManager.render();
-               
-        //console.log(taskManager.currentId);
-        //console.log(taskA.objectId);
         //console.log(Number(event.target.id));
         //console.log(Number(taskId)); 
      }
     
      if (event.target.classList.contains("deleteBtn")) {
         // Get the parent Task
-        const parentTask =
-          event.target.parentElement.parentElement.parentElement.parentElement;
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
             // Get the taskId of the parent Task.
         const taskId = Number(parentTask.dataset.taskId);
            // Delete the task
             taskManager.deleteTask(taskId);
+            location.reload()
             // Save the tasks to localStorage
             taskManager.save();
             // Render the tasks
@@ -165,6 +192,7 @@ taskList1.addEventListener("click",(event) => {
             const taskId = Number(parentTask.dataset.taskId);
                // Delete the task
                 taskManager.deleteTask(taskId);
+                location.reload()
                 // Save the tasks to localStorage
                 taskManager.save();
                 // Render the tasks
@@ -195,6 +223,7 @@ taskList1.addEventListener("click",(event) => {
                 const taskId = Number(parentTask.dataset.taskId);
                    // Delete the task
                     taskManager.deleteTask(taskId);
+                    location.reload()
                     // Save the tasks to localStorage
                     taskManager.save();
                     // Render the tasks
@@ -203,7 +232,7 @@ taskList1.addEventListener("click",(event) => {
             });
 
             const taskList4 = document.querySelector("#task-list4");
-        taskList4.addEventListener("click",(event) => {
+            taskList4.addEventListener("click",(event) => {
             if (event.target.classList.contains("doneBtn")){
                 const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
                 const taskId = Number(parentTask.dataset.taskId);
@@ -226,6 +255,7 @@ taskList1.addEventListener("click",(event) => {
                 const taskId = Number(parentTask.dataset.taskId);
                    // Delete the task
                     taskManager.deleteTask(taskId);
+                    location.reload()
                     // Save the tasks to localStorage
                     taskManager.save();
                     // Render the tasks
@@ -233,3 +263,46 @@ taskList1.addEventListener("click",(event) => {
               }
             });
 
+// check date function start here
+
+// function isDate(ExpiryDate) { 
+//     var objDate,  // date object initialized from the ExpiryDate string 
+//         mSeconds, // ExpiryDate in milliseconds 
+//         day,      // day 
+//         month,    // month 
+//         year;     // year 
+//     // date length should be 10 characters (no more no less) 
+//     if (ExpiryDate.length !== 10) { 
+//         return false; 
+//     } 
+//     // third and sixth character should be '/' 
+//     if (ExpiryDate.substring(2, 3) !== '/' || ExpiryDate.substring(5, 6) !== '/') { 
+//         return false; 
+//     } 
+//     // extract month, day and year from the ExpiryDate (expected format is mm/dd/yyyy) 
+//     // subtraction will cast variables to integer implicitly (needed 
+//     // for !== comparing) 
+//     month = ExpiryDate.substring(0, 2) - 1; // because months in JS start from 0 
+//     day = ExpiryDate.substring(3, 5) - 0; 
+//     year = ExpiryDate.substring(6, 10) - 0; 
+//     // test year range 
+//     if (year < 1000 || year > 3000) { 
+//         return false; 
+//     } 
+//     // convert ExpiryDate to milliseconds 
+//     mSeconds = (new Date(year, month, day)).getTime(); 
+//     // initialize Date() object from calculated milliseconds 
+//     objDate = new Date(); 
+//     objDate.setTime(mSeconds); 
+//     // compare input date and parts from Date() object 
+//     // if difference exists then date isn't valid 
+//     if (objDate.getFullYear() !== year || 
+//         objDate.getMonth() !== month || 
+//         objDate.getDate() !== day) { 
+            
+           
+//         return false;; 
+//     } 
+//     // otherwise return true 
+//     return true; 
+// }

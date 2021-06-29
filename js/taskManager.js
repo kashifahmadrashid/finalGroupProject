@@ -13,7 +13,7 @@ const createTaskHTML = (Id, taskTitle, taskDescription, taskAssignment, taskDueD
                                 <p class="card-text" id="${inputStatus}"><b>Status:</b> ${inputStatus}</p>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-outline-success doneBtn ${inputStatus === 'Done' ? 'd-none' : ''}" type="button" id="${Id}">
+                                <button class="btn btn-outline-success doneBtn ${inputStatus === 'Done' ? 'd-none' : ''}" type="button">
                                     Done
                                 </button>
                                 
@@ -66,20 +66,25 @@ class TaskManager{
             //console.log(this.tasks[i].Status)
             const taskHtml = createTaskHTML (task.objectId, task.taskTitle, task.taskDescription, task.taskAssignment,
                                             formattedDate, task.Status);
-                         
-            console.log(this.tasks[i].objectId); 
-            console.log(taskHtml)                       
+            // taskHtmlList.push(taskHtml);             
+            // console.log(this.tasks[i].objectId); 
+            // console.log(taskHtml)                    
                   if(task.Status === "Done"){
                     //button.id.style.display="none";
                     doneArray.push(taskHtml);
+                    taskHtmlList.push(taskHtml);
                     //console.log(this.tasks.objectId)              
-                        } else if(task.Status === "To Do") {
+                    } else if(task.Status === "To Do") {
                         todoArray.push(taskHtml);
-                            } else if(task.Status === "Review") {
+                        taskHtmlList.push(taskHtml);
+                        } else if(task.Status === "Review") {
                                 reviewArray.push(taskHtml);
-                                } else if(task.Status === "In Process") {
+                                taskHtmlList.push(taskHtml);
+                            } else if(task.Status === "In Process") {
                                     inprocessArray.push(taskHtml);
+                                    taskHtmlList.push(taskHtml);
                                     };                 
+            
                                     
             const doneHtml = doneArray.join("\n");
             const doneList = document.querySelector("#task-list1");
@@ -97,8 +102,14 @@ class TaskManager{
             const reviewHtml = reviewArray.join("\n");
             const reviewList = document.querySelector("#task-list4");
             reviewList.innerHTML = reviewHtml;
-        
-    };
+            // with a new line in between each item.
+            const tasksHtml = taskHtmlList.join("\n");
+            // Set the inner html of the tasksList on the page
+            const tasksList = document.querySelector("#task-list");
+            tasksList.innerHTML = tasksHtml;  
+            
+    };    
+             
 };
     getTaskById(taskId){
         let foundTask;
