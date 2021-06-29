@@ -54,6 +54,10 @@ class TaskManager{
     // End TaskManager lass
     render (){
         const taskHtmlList = [];
+        const doneArray = [];
+        const todoArray = [];
+        const reviewArray = [];
+        const inprocessArray = [];
         for (let i=0; i<this.tasks.length; i++){
             const task = this.tasks[i];
             const date = new Date (task.taskDueDate);
@@ -63,36 +67,33 @@ class TaskManager{
             const taskHtml = createTaskHTML (task.objectId, task.taskTitle, task.taskDescription, task.taskAssignment,
                                             formattedDate, task.Status);
                          
-            //  console.log(this.tasks[i].objectId); 
-              //console.log(taskHtml)
-                const doneArray = [];
-                const reviewArray = [];
-                const inprocessArray = [];
-                const todoArray = [];
-             for (let i=0; i<this.tasks.length; i++){
-                const tasks = this.tasks[i];
-                if(this.tasks[i].Status === "Done"){
+            console.log(this.tasks[i].objectId); 
+            console.log(taskHtml)                       
+                  if(task.Status === "Done"){
                     //button.id.style.display="none";
-                    doneArray.push(tasks);
-                    console.log(tasks.objectId)              
-                   
-                } else if(this.tasks[i].Status === "To Do") {
-                    todoArray.push(tasks);
-                    } else if(this.tasks[i].Status === "Review") {
-                        reviewArray.push(tasks);
-                        } else if(this.tasks[i].Status === "In Process") {
-                            inprocessArray.push(tasks);
-                            }                 
-             }   
-            // Push it to the tasksHtmlList array                                
-             taskHtmlList.push(taskHtml);  
-            }          
-            // Create the tasksHtml by joining each item in the tasksHtmlList
-            // with a new line in between each item.
-            const tasksHtml = taskHtmlList.join("\n");
-            const tasksList = document.querySelector("#task-list");
-            tasksList.innerHTML = tasksHtml;
-            
+                    doneArray.push(taskHtml);
+                    console.log(this.tasks.objectId)              
+                        } else if(task.Status === "To Do") {
+                        todoArray.push(taskHtml);
+                            } else if(task.Status === "Review") {
+                                reviewArray.push(taskHtml);
+                                } else if(task.Status === "In Process") {
+                                        inprocessArray.push(taskHtml);
+                                    }                 
+             
+                        // Push it to the tasksHtmlList array                                
+                        //O taskHtmlList.push(taskHtml);  
+                    }          
+                         
+                                     // Create the tasksHtml by joining each item in the tasksHtmlList
+                                     // with a new line in between each item.
+                                    // o  const tasksHtml = taskHtmlList.join("\n");
+                                    // o  const tasksList = document.querySelector("#task-list");
+                                    //  o tasksList.innerHTML = tasksHtml;
+             
+                                     const doneHtml = doneArray.join("\n");
+                                     const doneList = document.querySelector("#task-list");
+                                     doneList.innerHTML = doneHtml;
         
     };
 
