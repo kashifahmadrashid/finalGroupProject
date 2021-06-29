@@ -110,8 +110,9 @@ e.preventDefault();
 
 // Get the Id of individual task
 //const buttonId = document.getElementById("Id");
-const taskList = document.querySelector("#task-list");
-taskList.addEventListener("click",(event) => {
+const taskList1 = document.querySelector("#task-list1");
+//const taskList2 = document.querySelector("#task-list4");
+taskList1.addEventListener("click",(event) => {
     if (event.target.classList.contains("doneBtn")){
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
@@ -140,5 +141,95 @@ taskList.addEventListener("click",(event) => {
             taskManager.render();
       }
     });
+    const taskList2 = document.querySelector("#task-list2");
+    taskList2.addEventListener("click",(event) => {
+        if (event.target.classList.contains("doneBtn")){
+            const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+            const taskId = Number(parentTask.dataset.taskId);
+            const taskA = taskManager.getTaskById(taskId);
+            taskA.Status = "Done";       
+            taskManager.save();
+            taskManager.render();
+                   
+            //console.log(taskManager.currentId);
+            //console.log(taskA.objectId);
+            //console.log(Number(event.target.id));
+            //console.log(Number(taskId)); 
+         }
+        
+         if (event.target.classList.contains("deleteBtn")) {
+            // Get the parent Task
+            const parentTask =
+              event.target.parentElement.parentElement.parentElement.parentElement;
+                // Get the taskId of the parent Task.
+            const taskId = Number(parentTask.dataset.taskId);
+               // Delete the task
+                taskManager.deleteTask(taskId);
+                // Save the tasks to localStorage
+                taskManager.save();
+                // Render the tasks
+                taskManager.render();
+          }
+        });
+        const taskList3 = document.querySelector("#task-list3");
+        taskList3.addEventListener("click",(event) => {
+            if (event.target.classList.contains("doneBtn")){
+                const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+                const taskId = Number(parentTask.dataset.taskId);
+                const taskA = taskManager.getTaskById(taskId);
+                taskA.Status = "Done";       
+                taskManager.save();
+                taskManager.render();
+                       
+                //console.log(taskManager.currentId);
+                //console.log(taskA.objectId);
+                //console.log(Number(event.target.id));
+                //console.log(Number(taskId)); 
+             }
+            
+             if (event.target.classList.contains("deleteBtn")) {
+                // Get the parent Task
+                const parentTask =
+                  event.target.parentElement.parentElement.parentElement.parentElement;
+                    // Get the taskId of the parent Task.
+                const taskId = Number(parentTask.dataset.taskId);
+                   // Delete the task
+                    taskManager.deleteTask(taskId);
+                    // Save the tasks to localStorage
+                    taskManager.save();
+                    // Render the tasks
+                    taskManager.render();
+              }
+            });
 
+            const taskList4 = document.querySelector("#task-list4");
+        taskList4.addEventListener("click",(event) => {
+            if (event.target.classList.contains("doneBtn")){
+                const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+                const taskId = Number(parentTask.dataset.taskId);
+                const taskA = taskManager.getTaskById(taskId);
+                taskA.Status = "Done";       
+                taskManager.save();
+                taskManager.render();
+                       
+                //console.log(taskManager.currentId);
+                //console.log(taskA.objectId);
+                //console.log(Number(event.target.id));
+                //console.log(Number(taskId)); 
+             }
+            
+             if (event.target.classList.contains("deleteBtn")) {
+                // Get the parent Task
+                const parentTask =
+                  event.target.parentElement.parentElement.parentElement.parentElement;
+                    // Get the taskId of the parent Task.
+                const taskId = Number(parentTask.dataset.taskId);
+                   // Delete the task
+                    taskManager.deleteTask(taskId);
+                    // Save the tasks to localStorage
+                    taskManager.save();
+                    // Render the tasks
+                    taskManager.render();
+              }
+            });
 

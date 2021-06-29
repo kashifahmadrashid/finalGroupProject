@@ -83,7 +83,7 @@
                   <select class="form-select" aria-label="Status" id="inputStatus">
                     <option value="">Status</option>
                     <option value="To Do">To Do</option>
-                    <option value="In Progress">In Progress</option>
+                    <option value="In Process">In Process</option>
                     <option value="Review">Review</option>
                     <option value="Done">Done</option>
                  </select>
@@ -96,19 +96,25 @@
                 <button class="btn btn-primary" type="submit" id="addBtn">Add task</button>
               </div>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="doneFilter">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" id="doneFilter">
                 Task Done
               </button>
-              <!-- Button trigger modal -->
-
-              <!-- Button trigger modal -->
-
-              <!-- Button trigger modal -->
-
+              <!-- Button to do trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" id="toDoFilter">
+                Todo Statatus
+              </button>
+              <!-- Button in progress trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop3" id="inProgressFilter">
+                In Process
+              </button>
+              <!-- Button review trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop4" id="reviewFilter">
+                Review
+              </button>
             </div>
             <!-- Modal task done start here -->
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -117,7 +123,53 @@
       </div>
       <div class="modal-body">
         <div>
-          <ul class="list-group" id="task-list"> 
+          <ul class="list-group" id="task-list1"> 
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end here -->
+
+<!-- Modal task todo status start here -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">To do status</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <ul class="list-group" id="task-list2"> 
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
+<!--Modal end here -->
+
+<!-- Modal task in progress start here -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Task In Process</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <ul class="list-group" id="task-list3"> 
           </ul>
         </div>
       </div>
@@ -131,16 +183,16 @@
 
 <!-- Modal task done start here -->
 <!-- Modal -->
-<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Task done</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Task Review Status</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div>
-          <ul class="list-group" id="task-list"> 
+          <ul class="list-group" id="task-list4"> 
           </ul>
         </div>
       </div>
@@ -149,53 +201,7 @@
         </div>
     </div>
   </div>
-</div> -->
-<!-- Modal end here -->
-
-<!-- Modal task done start here -->
-<!-- Modal -->
-<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Task done</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <ul class="list-group" id="task-list"> 
-          </ul>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-    </div>
-  </div>
-</div> -->
-<!-- Modal end here -->
-
-<!-- Modal task done start here -->
-<!-- Modal -->
-<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Task done</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <ul class="list-group" id="task-list"> 
-          </ul>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-    </div>
-  </div>
-</div> -->
+</div>
 <!-- Modal end here -->
         </form>
     <div class="image a" id="scheduleImage">

@@ -72,31 +72,35 @@ class TaskManager{
                   if(task.Status === "Done"){
                     //button.id.style.display="none";
                     doneArray.push(taskHtml);
-                    console.log(this.tasks.objectId)              
+                    //console.log(this.tasks.objectId)              
                         } else if(task.Status === "To Do") {
                         todoArray.push(taskHtml);
                             } else if(task.Status === "Review") {
                                 reviewArray.push(taskHtml);
                                 } else if(task.Status === "In Process") {
-                                        inprocessArray.push(taskHtml);
-                                    }                 
-             
-                        // Push it to the tasksHtmlList array                                
-                        //O taskHtmlList.push(taskHtml);  
-                    }          
-                         
-                                     // Create the tasksHtml by joining each item in the tasksHtmlList
-                                     // with a new line in between each item.
-                                    // o  const tasksHtml = taskHtmlList.join("\n");
-                                    // o  const tasksList = document.querySelector("#task-list");
-                                    //  o tasksList.innerHTML = tasksHtml;
-             
-                                     const doneHtml = doneArray.join("\n");
-                                     const doneList = document.querySelector("#task-list");
-                                     doneList.innerHTML = doneHtml;
+                                    inprocessArray.push(taskHtml);
+                                    
+                                    };                 
+                                    
+            const doneHtml = doneArray.join("\n");
+            const doneList = document.querySelector("#task-list1");
+            doneList.innerHTML = doneHtml;
+            // add the TodoHtml to todoListHTML
+            const todoHtml = todoArray.join("\n");
+            const todoList = document.querySelector("#task-list2");
+            todoList.innerHTML = todoHtml;
+            //add the inProcessHtml to todoListHTML
+            const inProcessHtml = inprocessArray.join("\n");
+            console.log(inprocessArray);
+            const inProcessList = document.querySelector("#task-list3");
+            inProcessList.innerHTML = inProcessHtml;
+            //add the review tml to todoListHTML
+            const reviewHtml = reviewArray.join("\n");
+            const reviewList = document.querySelector("#task-list4");
+            reviewList.innerHTML = reviewHtml;
         
     };
-
+};
     getTaskById(taskId){
         let foundTask;
         for(let i=0; i<this.tasks.length; i++) {
