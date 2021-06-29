@@ -27,7 +27,7 @@ main{
     background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
     border: none;
 }
-#doneFilter{
+#doneFilter, #toDoFilter, #inProgressFilter, #reviewFilter{
     background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
     border: none;
 }

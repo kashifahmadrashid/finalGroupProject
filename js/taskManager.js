@@ -79,7 +79,6 @@ class TaskManager{
                                 reviewArray.push(taskHtml);
                                 } else if(task.Status === "In Process") {
                                     inprocessArray.push(taskHtml);
-                                    
                                     };                 
                                     
             const doneHtml = doneArray.join("\n");
@@ -94,7 +93,7 @@ class TaskManager{
             console.log(inprocessArray);
             const inProcessList = document.querySelector("#task-list3");
             inProcessList.innerHTML = inProcessHtml;
-            //add the review tml to todoListHTML
+            //add the review Html to todoListHTML
             const reviewHtml = reviewArray.join("\n");
             const reviewList = document.querySelector("#task-list4");
             reviewList.innerHTML = reviewHtml;
