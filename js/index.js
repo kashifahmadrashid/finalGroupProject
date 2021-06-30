@@ -1,8 +1,6 @@
 const taskManager = new TaskManager(0);
-
 taskManager.load();
 taskManager.render();
-
 let taskTitle = document.querySelector("#taskTitle");
 let taskDescription = document.querySelector("#taskDescription");
 let taskAssignment = document.querySelector("#taskAssignment");
@@ -16,8 +14,7 @@ let errMsg5 = document.querySelector("#errMsg5");
 let addBtn = document.querySelector("#addBtn");
 addBtn.addEventListener("click", validFormInput );
 
-
-
+// functions validate input form 
 function validFormInput (e) {
     var allPassed = true;
     var GivenDate = taskDueDate.value;
@@ -26,7 +23,7 @@ function validFormInput (e) {
     //CurrentDate = CurrentDate.
     
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
-        errMsg1.innerHTML = "The Title shouldn\'t be less than 5 characters";
+        errMsg1.innerHTML = "The Title must be greater than 5 characters";
         document.querySelector("#errMsg1").style.color = "#ff0000";
         taskTitle.style.borderColor = "red";
         taskTitle.focus(); 
@@ -38,7 +35,7 @@ function validFormInput (e) {
                 // allPassed = true;
             }
     if(taskDescription.value.trim() == "" || taskDescription.value.length < 5){
-        errMsg2.innerHTML = "The Task Title must be greater than 5 characters"
+        errMsg2.innerHTML = "Description must be greater than 5 characters"
         document.querySelector("#errMsg2").style.color = "#ff0000"
         taskDescription.style.borderColor = "red";
         taskDescription.focus();
@@ -62,7 +59,7 @@ function validFormInput (e) {
                 // allPassed = true;
             }
     if(taskDueDate.value == "" || GivenDate < CurrentDate){
-        errMsg4.innerHTML = "Please select a date after today";
+        errMsg4.innerHTML = "Please select a date from today";
         document.querySelector("#errMsg4").style.color = "#ff0000"
         taskDueDate.style.borderColor = "red";
         taskDueDate.focus();
@@ -108,8 +105,7 @@ function validFormInput (e) {
         clearFormInput();   
         taskManager.save();
         taskManager.render();
-    }
-    
+    }  
 e.preventDefault();
 }
 
@@ -126,8 +122,7 @@ taskList0.addEventListener("click",(event) => {
         //console.log(Number(event.target.id));
         //console.log(Number(taskId)); 
      }
-    
-     if (event.target.classList.contains("deleteBtn")) {
+    if (event.target.classList.contains("deleteBtn")) {
         // Get the parent Task
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
             // Get the taskId of the parent Task.
