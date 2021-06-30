@@ -1,6 +1,6 @@
 const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskDueDate, inputState) =>{
     const html = `
-                <li class="card" data-task-id="${newId}" style="min-width: 30vw ">
+                <li class="card row" data-task-id="${newId}" style="min-width: 30vw ">
                     <div class="card-body">
                         <h5 class="card-title"><b>${taskTitle}</b></h5>
                         <p class="card-text">${taskDescription}</p>
@@ -8,7 +8,7 @@ const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskD
                         <p class="card-text">Due By: ${taskDueDate}</p>
                         <div class="card-footer row">
                             <div class="col-6">
-                                <p class="card-text"><b>Status:</b> ${inputState}</p>
+                                <p class="card-text"><b>Status:</b>${inputState}</p>
                             </div>
                             <div class="col-3">
                                 <button class="btn btn-outline-success doneBtn ${inputState === "Done" ? "d-none" : ""}">
@@ -36,7 +36,7 @@ class TaskManager{
    
     
     addTask (taskTitle, taskDescription, taskAssignment, taskDueDate, inputState){
-        const newTask = {
+        const taskObject = {
             newId: this.currentId++,
             taskTitle: taskTitle,
             taskDescription: taskDescription,
@@ -44,13 +44,17 @@ class TaskManager{
             taskDueDate: taskDueDate,
             inputState: inputState,
         };
-        this.tasks.push(newTask);
-        console.log(this.tasks)
+        this.tasks.push(taskObject);
+        //console.log(this.tasks)
         return this.tasks;
 
     }
     render (){
         const taskHtmlList = [];
+        const doneArray = [];
+        const todoArray = [];
+        const reviewArray = [];
+        const inprocessArray = [];
         for (let i=0; i<this.tasks.length; i++){
             const task = this.tasks[i];
             const date = new Date (task.taskDueDate);
@@ -64,14 +68,46 @@ class TaskManager{
                 formattedDate, 
                 task.inputState
             );
-            taskHtmlList.push(taskHtml);
-        }
+            //taskHtmlList.push(taskHtml);
+            // console.log(this.tasks[i].newId);
+            // console.log(taskHtml)
+            if(task.inputState === "Done"){
+                doneArray.push(taskHtml);
+                taskHtmlList.push(taskHtml);
+            }else if (task.inputState === "To Do"){
+                todoArray.push(taskHtml);
+                taskHtmlList.push(taskHtml);
+            }else if (task.inputState === "Review"){
+                reviewArray.push(taskHtml);
+                taskHtmlList.push(taskHtml);
+            }else if (task.inputState === "In Progress") {
+                inprocessArray.push(taskHtml);
+                taskHtmlList.push(taskHtml);
+                };
+                
+            const doneHtml = doneArray.join("\n");
+            const doneList = document.querySelector("#task-list1");
+            doneList.innerHTML = doneHtml;
+            const todoHtml = todoArray.join("\n");
+            const todoList = document.querySelector("#task-list2");
+            todoList.innerHTML = todoHtml;
+            const inProcessHtml = inprocessArray.join("\n");
+            
+            const inProcessList = document.querySelector("#task-list3");
+            inProcessList.innerHTML = inProcessHtml;
+            const reviewHtml = reviewArray.join("\n");
+            const reviewList = document.querySelector("#task-list4");
+            reviewList.innerHTML = reviewHtml;
             const tasksHtml = taskHtmlList.join("\n");
-            
-            const tasksList = document.querySelector("#task-list");
-            
+            const tasksList = document.querySelector("#task-list0");
             tasksList.innerHTML = tasksHtml;
-        }
+        };
+            // const tasksHtml = taskHtmlList.join("\n");
+            
+            // const tasksList = document.querySelector("#task-list");
+            
+            // tasksList.innerHTML = tasksHtml;
+    };
     getTaskById(taskId){
         let foundTask;
         for(let i=0; i<this.tasks.length; i++){
@@ -81,7 +117,7 @@ class TaskManager{
             }
         }
         return foundTask;
-    }
+    };
 
     save() {
         const tasksJson = JSON.stringify(this.tasks);
@@ -118,7 +154,7 @@ class TaskManager{
     }
     
    
-}
+};
     
     
 

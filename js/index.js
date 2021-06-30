@@ -17,6 +17,10 @@ addBtn.addEventListener("click", validFormInput );
 
 function validFormInput (e) {
     var allPassed = true;
+    var givenDate = dueDate.value;
+    var currentDate = new Date();
+    givenDate = new Date (givenDate);
+
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
         errMsg1.innerHTML = "The Title must be greater than 5 characters";
         errMsg1.style.color = "#ff0000";
@@ -53,13 +57,13 @@ function validFormInput (e) {
         taskAssignment.style.borderColor = "green";
        
     }
-    if(dueDate.value == ""){
-        errMsg4.innerHTML = "Please select a date from the calendar";
+    if(dueDate.value == "" || givenDate < currentDate){
+        errMsg4.innerHTML = "Please select a  valid date from the calendar";
         errMsg4.style.color = "#ff0000";
         dueDate.style.borderColor = "#ff0000";
         dueDate.focus();
         allPassed = false;
-    }else {
+    }else if (givenDate >= currentDate){
         errMsg4.innerHTML = "Looks Good";
         errMsg4.style.color = "green";
         taskDueDate.style.borderColor = "green";
@@ -111,36 +115,138 @@ function validFormInput (e) {
 e.preventDefault();
 }
 
-const taskList = document.querySelector("#task-list");
-
-taskList.addEventListener("click",(event) => {
-    
+const taskList0 = document.querySelector("#task-list0");
+taskList0.addEventListener("click", (event) => {
     if (event.target.classList.contains("doneBtn")){
-       
-    const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-    
-    const taskId = Number(parentTask.dataset.taskId);
-    
-    const task = newTask.getTaskById(taskId);
-    
-    task.inputState = "Done";
-    
-          
-    newTask.save();
-
-	newTask.render();
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+        const taskId = Number(parentTask.dataset.taskId);
+        const taskA = newTask.getTaskById(taskId);
+        taskA.inputState = "Done";
+        newTask.save();
+        newTask.render();
     }
-
+    if (event.target.classList.contains("deleteBtn")){
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+        const taskId = Number(parentTask.dataset.taskId);
+        newTask.deleteTask(taskId);
+        location.reload();
+        newTask.save();
+        newTask.render();
+    }
+});
+const taskList1 = document.querySelector("#task-list1");
+taskList1.addEventListener("click", (event) => {
+    if (event.target.classList.contains("doneBtn")){
+        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+        const taskId = Number (parentTask.dataset.taskId);
+        const taskA = newTask.getTaskById(taskId);
+        taskA.inputState = "Done";
+        newTask.save();
+        newTask.render();
+    }
 
     if (event.target.classList.contains("deleteBtn")){
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         newTask.deleteTask(taskId);
+        location.reload();
         newTask.save();
         newTask.render();
+    }
+});
+const taskList2 = document.querySelector("#task-list2");
+taskList2.addEventListener("click", (event) => {
+	if (event.target.classList.contains("doneBtn")) {
+		const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+		const taskId = Number(parentTask.dataset.taskId);
+		const taskA = newTask.getTaskById(taskId);
+		taskA.inputState = "Done";
+		newTask.save();
+		newTask.render();
 	}
 
+	if (event.target.classList.contains("deleteBtn")) {
+		const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+		const taskId = Number(parentTask.dataset.taskId);
+		newTask.deleteTask(taskId);
+		
+        newTask.save();
+		newTask.render();
+	}
 });
+
+const taskList3 = document.querySelector("#task-list3");
+taskList3.addEventListener("click", (event) => {
+	if (event.target.classList.contains("doneBtn")) {
+		const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+		const taskId = Number(parentTask.dataset.taskId);
+		const taskA = newTask.getTaskById(taskId);
+		taskA.inputState = "Done";
+		newTask.save();
+		newTask.render();
+	}
+
+	if (event.target.classList.contains("deleteBtn")) {
+		const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+		const taskId = Number(parentTask.dataset.taskId);
+		newTask.deleteTask(taskId);
+		
+        newTask.save();
+		newTask.render();
+	}
+});
+
+const taskList4 = document.querySelector("#task-list4");
+taskList4.addEventListener("click", (event) => {
+	if (event.target.classList.contains("doneBtn")) {
+		const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+		const taskId = Number(parentTask.dataset.taskId);
+		const taskA = newTask.getTaskById(taskId);
+		taskA.inputState = "Done";
+		newTask.save();
+		newTask.render();
+	}
+
+	if (event.target.classList.contains("deleteBtn")) {
+		const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+		const taskId = Number(parentTask.dataset.taskId);
+		newTask.deleteTask(taskId);
+		newTask.save();
+		newTask.render();
+	}
+});
+
+
+// const taskList = document.querySelector("#task-list");
+
+// taskList.addEventListener("click",(event) => {
+    
+//     if (event.target.classList.contains("doneBtn")){
+       
+//     const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+    
+//     const taskId = Number(parentTask.dataset.taskId);
+    
+//     const task = newTask.getTaskById(taskId);
+    
+//     task.inputState = "Done";
+    
+          
+//     newTask.save();
+
+// 	newTask.render();
+//     }
+
+
+//     if (event.target.classList.contains("deleteBtn")){
+//         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+//         const taskId = Number(parentTask.dataset.taskId);
+//         newTask.deleteTask(taskId);
+//         newTask.save();
+//         newTask.render();
+// 	}
+
+// });
 
 
 
