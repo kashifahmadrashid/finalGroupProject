@@ -28,7 +28,7 @@ function validFormInput (e) {
         document.querySelector("#errMsg1").style.color = "#ff0000";
         taskTitle.style.borderColor = "red";
         taskTitle.focus(); 
-        allPassed = false;
+         allPassed = false;
             }else {
                 errMsg1.innerHTML = "Looks Good";
                 errMsg1.style.color = "green";

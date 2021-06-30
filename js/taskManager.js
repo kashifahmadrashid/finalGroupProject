@@ -116,8 +116,7 @@ class TaskManager{
             }
         }
         return foundTask;   
-    };
-    
+ };
     save() {
         // Create a JSON string of the tasks
         const tasksJson = JSON.stringify(this.tasks);
