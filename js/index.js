@@ -131,7 +131,6 @@ taskList0.addEventListener("click",(event) => {
         const taskId = Number(parentTask.dataset.taskId);
            // Delete the task
         taskManager.deleteTask(taskId);
-        // location.reload()
         // Save the tasks to localStorage
         taskManager.save();
         // Render the tasks
@@ -180,7 +179,6 @@ if (event.target.classList.contains("doneBtn")){
         const taskId = Number(parentTask.dataset.taskId);
         // Delete the task
         taskManager.deleteTask(taskId);
-        // location.reload()
         // Save the tasks to localStorage
         taskManager.save();
         // Render the tasks
