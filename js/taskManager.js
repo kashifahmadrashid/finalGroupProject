@@ -47,13 +47,11 @@ class TaskManager{
         };
         this.tasks.push(taskObject);
         //console.log(this.tasks)
-        return this.tasks;
-        
-       
+        return this.tasks;   
     }; 
-    // End TaskManager lass
+    //Method render the this.tasks Array and assign to the  DOM HTML
     render (){
-        const taskHtmlList = [];
+        const AllTaskArray = [];
         const doneArray = [];
         const todoArray = [];
         const reviewArray = [];
@@ -65,46 +63,44 @@ class TaskManager{
             date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
             //console.log(this.tasks[i].Status)
             const taskHtml = createTaskHTML (task.objectId, task.taskTitle, task.taskDescription, task.taskAssignment,
-                                            formattedDate, task.Status);
-            // taskHtmlList.push(taskHtml);             
-            // console.log(this.tasks[i].objectId); 
-            // console.log(taskHtml)                    
-                  if(task.Status === "Done"){
-                    //button.id.style.display="none";
+                                            formattedDate, task.Status);                    
+            if(task.Status === "Done"){
                     doneArray.push(taskHtml);
-                    taskHtmlList.push(taskHtml);
+                    AllTaskArray.push(taskHtml);
                     //console.log(this.tasks.objectId)              
                     } else if(task.Status === "To Do") {
                         todoArray.push(taskHtml);
-                        taskHtmlList.push(taskHtml);
+                        AllTaskArray.push(taskHtml);
                         } else if(task.Status === "Review") {
                                 reviewArray.push(taskHtml);
-                                taskHtmlList.push(taskHtml);
+                                AllTaskArray.push(taskHtml);
                             } else if(task.Status === "In Process") {
                                     inprocessArray.push(taskHtml);
-                                    taskHtmlList.push(taskHtml);
-                                    };                 
-            
-                                    
+                                    AllTaskArray.push(taskHtml);
+                                    };                                                   
+            // Assign the doneArray to doneHtml
+            // with a new line in between each Array item.
             const doneHtml = doneArray.join("\n");
             const doneList = document.querySelector("#task-list1");
             doneList.innerHTML = doneHtml;
-            // add the TodoHtml to todoListHTML
+            // Assign the todoArray to todoHtml
+            // with a new line in between each Array item.
             const todoHtml = todoArray.join("\n");
             const todoList = document.querySelector("#task-list2");
             todoList.innerHTML = todoHtml;
-            //add the inProcessHtml to inProcessListHTML
+            // Assign the inprocessArray to inProcessHtml
+            // with a new line in between each Array item.
             const inProcessHtml = inprocessArray.join("\n");
-            console.log(inprocessArray);
             const inProcessList = document.querySelector("#task-list3");
             inProcessList.innerHTML = inProcessHtml;
-            //add the reviewHtml to reviewListHTML
+            // Assign the reviewArray to reviewHtml
+            // with a new line in between each Array item.
             const reviewHtml = reviewArray.join("\n");
             const reviewList = document.querySelector("#task-list4");
             reviewList.innerHTML = reviewHtml;
-            // with a new line in between each item.
-            const tasksHtml = taskHtmlList.join("\n");
-            // Set the inner html of the tasksList on the page
+            // Assign the reviewArray to reviewHtml
+            // with a new line in between each Array item.
+            const tasksHtml = AllTaskArray.join("\n");
             const tasksList = document.querySelector("#task-list0");
             tasksList.innerHTML = tasksHtml;  
             
