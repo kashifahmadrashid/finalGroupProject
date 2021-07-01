@@ -68,9 +68,7 @@ class TaskManager{
                 formattedDate, 
                 task.inputState
             );
-            //taskHtmlList.push(taskHtml);
-            // console.log(this.tasks[i].newId);
-            // console.log(taskHtml)
+           
             if(task.inputState === "Done"){
                 doneArray.push(taskHtml);
                 taskHtmlList.push(taskHtml);
@@ -104,11 +102,6 @@ class TaskManager{
             const tasksList = document.querySelector("#task-list0");
             tasksList.innerHTML = tasksHtml;
         };
-            // const tasksHtml = taskHtmlList.join("\n");
-            
-            // const tasksList = document.querySelector("#task-list");
-            
-            // tasksList.innerHTML = tasksHtml;
     };
     getTaskById(taskId){
         let foundTask;
