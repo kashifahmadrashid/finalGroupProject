@@ -34,7 +34,7 @@ function validFormInput (e) {
  
     }
     if(taskDescription.value.trim() == "" || taskDescription.value.length < 5){
-        errMsg2.innerHTML = "The Task Title must be greater than 5 characters"
+        errMsg2.innerHTML = "The Task Description must be greater than 5 characters"
         errMsg2.style.color = "#ff0000";
         taskDescription.style.borderColor = "#ff0000";
         taskDescription.focus();
