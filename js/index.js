@@ -14,13 +14,14 @@ let errMsg4 = document.querySelector("#errMsg4");
 let errMsg5 = document.querySelector("#errMsg5");
 let addBtn = document.querySelector("#addBtn");
 addBtn.addEventListener("click", validFormInput );
-
+ 
+//form validation 
 function validFormInput (e) {
     var allPassed = true;
     var givenDate = dueDate.value;
     var currentDate = new Date();
     givenDate = new Date (givenDate);
-
+    //validation of Task Title
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
         errMsg1.innerHTML = "The Title must be greater than 5 characters";
         errMsg1.style.color = "#ff0000";
@@ -31,8 +32,8 @@ function validFormInput (e) {
         errMsg1.innerHTML = "Looks Good";
         errMsg1.style.color = "green";
         taskTitle.style.borderColor = "green";
- 
     }
+    //validation of Task Description
     if(taskDescription.value.trim() == "" || taskDescription.value.length < 5){
         errMsg2.innerHTML = "The Task Description must be greater than 5 characters"
         errMsg2.style.color = "#ff0000";
@@ -43,8 +44,8 @@ function validFormInput (e) {
         errMsg2.innerHTML = "Looks Good";
         errMsg2.style.color = "green";
         taskDescription.style.borderColor = "green";
-      
     }
+    //validation of Task Assignment
     if(taskAssignment.value.trim() == "" || taskAssignment.value.length < 2){
         errMsg3.innerHTML = "Please assign task to someone";
         errMsg3.style.color = "#ff0000";
@@ -57,6 +58,7 @@ function validFormInput (e) {
         taskAssignment.style.borderColor = "green";
        
     }
+    //validation of task date
     if(dueDate.value == "" || givenDate < currentDate){
         errMsg4.innerHTML = "Please select a  valid date from the calendar";
         errMsg4.style.color = "#ff0000";
@@ -69,6 +71,7 @@ function validFormInput (e) {
         taskDueDate.style.borderColor = "green";
        
     }
+    //validation of task status
     if(taskStatus.value == "Status" || taskStatus.value == ""){
         errMsg5.innerHTML = "Please select a task status";
         errMsg5.style.color="#ff0000";
@@ -115,6 +118,7 @@ function validFormInput (e) {
 e.preventDefault();
 }
 
+//get the id of the individual task
 const taskList0 = document.querySelector("#task-list0");
 taskList0.addEventListener("click", (event) => {
     if (event.target.classList.contains("doneBtn")){
@@ -125,11 +129,11 @@ taskList0.addEventListener("click", (event) => {
         newTask.save();
         newTask.render();
     }
+    //task deletion 
     if (event.target.classList.contains("deleteBtn")){
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         newTask.deleteTask(taskId);
-        //location.reload();
         newTask.save();
         newTask.render();
     }
