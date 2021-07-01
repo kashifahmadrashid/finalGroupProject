@@ -10,7 +10,7 @@ body{
     
 }
 .heading{
-    height: 15vh;
+    height: 10vh;
     
     background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
 }
@@ -19,12 +19,19 @@ body{
     text-align: center;
     padding-top: 20px;    
 }
-
+.topSection{
+    display: grid;
+    grid-template-columns:1fr 1fr;
+}
 .topSection img{
-    margin-left: 250px;
+    margin-left: 300px;
+    margin-top:5px;
+    height: 50vh;
 }
 .topSection form, h3{
     margin-left: 160px;
+    margin-top: 5px;
+    padding: 0;
 }
 main{
       
@@ -77,14 +84,15 @@ main{
     font-weight: bold;
 }
 
-.image {
+/* .image {
     display: flex; 
     height: 45vh;
     position: absolute; 
     margin:0% 20% 5% 40%;
     
+    
    
-}
+} */
 .list-group{
     margin-top: 20px;
     display: grid;
@@ -96,7 +104,7 @@ main{
 .card{
     /* display: flex; */
     /* justify-content: space-between;      */
-    margin: 30px auto 5px auto;
+    margin: 10px auto 5px auto;
     /* margin:30px auto 5px 50px; */
      
     /* min-width: 500px; */
