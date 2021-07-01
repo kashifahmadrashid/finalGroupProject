@@ -26,6 +26,7 @@ const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskD
               return html;
 };
 
+//taskManager class declaration
 class TaskManager{
 
     constructor(currentId = 0){
@@ -34,7 +35,7 @@ class TaskManager{
         this.currentId = currentId;
     }
    
-    
+    //method to add tasks
     addTask (taskTitle, taskDescription, taskAssignment, taskDueDate, inputState){
         const taskObject = {
             newId: this.currentId++,
@@ -45,10 +46,11 @@ class TaskManager{
             inputState: inputState,
         };
         this.tasks.push(taskObject);
-        //console.log(this.tasks)
+        
         return this.tasks;
 
     }
+    //render Method to render this.tasks Array 
     render (){
         const taskHtmlList = [];
         const doneArray = [];
@@ -68,7 +70,8 @@ class TaskManager{
                 formattedDate, 
                 task.inputState
             );
-           
+           //pushing the array into respective filter and the one that appears on screen
+        
             if(task.inputState === "Done"){
                 doneArray.push(taskHtml);
                 taskHtmlList.push(taskHtml);
@@ -81,10 +84,9 @@ class TaskManager{
             }else if (task.inputState === "In Progress") {
                 inprocessArray.push(taskHtml);
                 taskHtmlList.push(taskHtml);
-            }else{
-                taskHtmlList.push(taskHtml);
             };
-                
+            
+            //assigning the respective arrays with a new line in between the Array items
             const doneHtml = doneArray.join("\n");
             const doneList = document.querySelector("#task-list1");
             doneList.innerHTML = doneHtml;
@@ -113,7 +115,7 @@ class TaskManager{
         }
         return foundTask;
     };
-
+    //save method to store tasks keys and ids on local storage
     save() {
         const tasksJson = JSON.stringify(this.tasks);
         localStorage.setItem("taskKey", tasksJson);
@@ -121,7 +123,7 @@ class TaskManager{
         localStorage.setItem("currentIdKey", currentIdJson);
 
     }
-
+    //load method to load the tasks from local storage
     load() {
         
         if (localStorage.getItem("taskKey")){
@@ -134,7 +136,7 @@ class TaskManager{
             this.currentId = Number(currentIdJson);
         }
     }
-
+    //task delet method
     deleteTask(taskId) {
         const newTasks = [];
         
