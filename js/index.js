@@ -129,11 +129,12 @@ taskList0.addEventListener("click", (event) => {
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         newTask.deleteTask(taskId);
-        location.reload();
+        //location.reload();
         newTask.save();
         newTask.render();
     }
 });
+
 const taskList1 = document.querySelector("#task-list1");
 taskList1.addEventListener("click", (event) => {
     if (event.target.classList.contains("doneBtn")){
