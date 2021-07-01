@@ -1,6 +1,8 @@
 const taskManager = new TaskManager(0);
+
 taskManager.load();
 taskManager.render();
+
 let taskTitle = document.querySelector("#taskTitle");
 let taskDescription = document.querySelector("#taskDescription");
 let taskAssignment = document.querySelector("#taskAssignment");
@@ -14,30 +16,29 @@ let errMsg5 = document.querySelector("#errMsg5");
 let addBtn = document.querySelector("#addBtn");
 addBtn.addEventListener("click", validFormInput );
 
-// functions validate input form 
+
+
 function validFormInput (e) {
     var allPassed = true;
     var GivenDate = taskDueDate.value;
     var CurrentDate = new Date();
     GivenDate = new Date(GivenDate);
     //CurrentDate = CurrentDate.
-
-    //Validate the input of Task title
+    
     if(taskTitle.value.trim() == "" || taskTitle.value.length < 5){
-        errMsg1.innerHTML = "The Title must be greater than 5 characters";
+        errMsg1.innerHTML = "The Title shouldn\'t be less than 5 characters";
         document.querySelector("#errMsg1").style.color = "#ff0000";
         taskTitle.style.borderColor = "red";
         taskTitle.focus(); 
-         allPassed = false;
+        allPassed = false;
             }else {
                 errMsg1.innerHTML = "Looks Good";
                 errMsg1.style.color = "green";
                 taskTitle.style.borderColor = "green";
                 // allPassed = true;
             }
-     //Validate the input of Description
     if(taskDescription.value.trim() == "" || taskDescription.value.length < 5){
-        errMsg2.innerHTML = "Description must be greater than 5 characters"
+        errMsg2.innerHTML = "The Task Title must be greater than 5 characters"
         document.querySelector("#errMsg2").style.color = "#ff0000"
         taskDescription.style.borderColor = "red";
         taskDescription.focus();
@@ -48,7 +49,6 @@ function validFormInput (e) {
                 taskDescription.style.borderColor = "green";
                 // allPassed = true;
             }
-     //Validate the input of Task Assignment       
     if(taskAssignment.value.trim() == "" || taskAssignment.value.length < 2){
         errMsg3.innerHTML = "Please assign task to someone";
         document.querySelector("#errMsg3").style.color = "#ff0000"
@@ -61,9 +61,8 @@ function validFormInput (e) {
                 taskAssignment.style.borderColor = "green";
                 // allPassed = true;
             }
-    //Validate the input of Due Date
     if(taskDueDate.value == "" || GivenDate < CurrentDate){
-        errMsg4.innerHTML = "Please select a date from today";
+        errMsg4.innerHTML = "Please select a date after today";
         document.querySelector("#errMsg4").style.color = "#ff0000"
         taskDueDate.style.borderColor = "red";
         taskDueDate.focus();
@@ -73,7 +72,7 @@ function validFormInput (e) {
         errMsg4.style.color = "green";
         taskDueDate.style.borderColor = "green";
     }
-    //Validate the input of Task Status    
+        
     if(taskStatus.value == ""){
         errMsg5.innerHTML = "Please select a task status";
         document.querySelector("#errMsg5").style.color = "#ff0000"
@@ -104,11 +103,13 @@ function validFormInput (e) {
         errMsg5.innerHTML = "";
     }
     if (allPassed) {
+          
         taskManager.addTask(taskTitle.value, taskDescription.value, taskAssignment.value, taskDueDate.value, taskStatus.value)
         clearFormInput();   
         taskManager.save();
         taskManager.render();
-    }  
+    }
+    
 e.preventDefault();
 }
 
@@ -116,159 +117,149 @@ e.preventDefault();
 const taskList0 = document.querySelector("#task-list0");
 taskList0.addEventListener("click",(event) => {
     if (event.target.classList.contains("doneBtn")){
-        //get the parent element of 'doneBtn' (dataset.taskID equal of data-task-id)
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         const taskA = taskManager.getTaskById(taskId);
         taskA.Status = "Done";       
         taskManager.save();
         taskManager.render();
-    }
-    if (event.target.classList.contains("deleteBtn")) {
-        //get the parent element of 'doneBtn' (dataset.taskID equal of data-task-id)
+        //console.log(Number(event.target.id));
+        //console.log(Number(taskId)); 
+     }
+    
+     if (event.target.classList.contains("deleteBtn")) {
+        // Get the parent Task
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
             // Get the taskId of the parent Task.
         const taskId = Number(parentTask.dataset.taskId);
            // Delete the task
-        taskManager.deleteTask(taskId);
-        // Save the tasks to localStorage
-        taskManager.save();
-        // Render the tasks
-        taskManager.render();
+            taskManager.deleteTask(taskId);
+            // location.reload()
+            // Save the tasks to localStorage
+            taskManager.save();
+            // Render the tasks
+            taskManager.render();
       }
     });
 
 const taskList1 = document.querySelector("#task-list1");
 taskList1.addEventListener("click",(event) => {
     if (event.target.classList.contains("doneBtn")){
-        //get the parent element of 'doneBtn' (dataset.taskID equal of data-task-id)
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
         const taskId = Number(parentTask.dataset.taskId);
         const taskA = taskManager.getTaskById(taskId);
         taskA.Status = "Done";       
         taskManager.save();
         taskManager.render();
-    }
-    if (event.target.classList.contains("deleteBtn")) {
-        //get the parent element of 'doneBtn' (dataset.taskID equal of data-task-id)
+        //console.log(Number(event.target.id));
+        //console.log(Number(taskId)); 
+     }
+    
+     if (event.target.classList.contains("deleteBtn")) {
+        // Get the parent Task
         const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-        // Get the taskId of the parent Task.
+            // Get the taskId of the parent Task.
         const taskId = Number(parentTask.dataset.taskId);
-         // Delete the task
-        taskManager.deleteTask(taskId);
-        // Save the tasks to localStorage
-        taskManager.save();
-        // Render the tasks
-        taskManager.render();
+           // Delete the task
+            taskManager.deleteTask(taskId);
+            // location.reload()
+            // Save the tasks to localStorage
+            taskManager.save();
+            // Render the tasks
+            taskManager.render();
       }
     });
-const taskList2 = document.querySelector("#task-list2");
-taskList2.addEventListener("click",(event) => {
-if (event.target.classList.contains("doneBtn")){
-        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-        const taskId = Number(parentTask.dataset.taskId);
-        const taskA = taskManager.getTaskById(taskId);            
-        taskA.Status = "Done";       
-        taskManager.save();
-        taskManager.render();
-        }
-        if (event.target.classList.contains("deleteBtn")) {
-        //get the parent element of 'doneBtn' (dataset.taskID equal of data-task-id)
-        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-        // Get the taskId of the parent Task.
-        const taskId = Number(parentTask.dataset.taskId);
-        // Delete the task
-        taskManager.deleteTask(taskId);
-        // Save the tasks to localStorage
-        taskManager.save();
-        // Render the tasks
-        taskManager.render();
-        }
-        });
-    
-const taskList3 = document.querySelector("#task-list3");
-taskList3.addEventListener("click",(event) => {
+    const taskList2 = document.querySelector("#task-list2");
+    taskList2.addEventListener("click",(event) => {
         if (event.target.classList.contains("doneBtn")){
-        //get the parent element of 'doneBtn' (dataset.taskID equal of data-task-id)
-        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-        const taskId = Number(parentTask.dataset.taskId);
-        const taskA = taskManager.getTaskById(taskId);
-        taskA.Status = "Done";       
-        taskManager.save();
-        taskManager.render();
-        }
-        if (event.target.classList.contains("deleteBtn")) {
-        // Get the parent Task
-        const parentTask =
-        event.target.parentElement.parentElement.parentElement.parentElement;
-        // Get the taskId of the parent Task.
-        const taskId = Number(parentTask.dataset.taskId);
-        // Delete the task
-        taskManager.deleteTask(taskId);
-        // Save the tasks to localStorage
-        taskManager.save();
-        // Render the tasks
-        taskManager.render();
-        }
+            const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+            const taskId = Number(parentTask.dataset.taskId);
+            const taskA = taskManager.getTaskById(taskId);
+            taskA.Status = "Done";       
+            taskManager.save();
+            taskManager.render();
+                   
+            //console.log(taskManager.currentId);
+            //console.log(taskA.objectId);
+            //console.log(Number(event.target.id));
+            //console.log(Number(taskId)); 
+         }
+        
+         if (event.target.classList.contains("deleteBtn")) {
+            // Get the parent Task
+            const parentTask =
+              event.target.parentElement.parentElement.parentElement.parentElement;
+                // Get the taskId of the parent Task.
+            const taskId = Number(parentTask.dataset.taskId);
+               // Delete the task
+                taskManager.deleteTask(taskId);
+                // location.reload()
+                // Save the tasks to localStorage
+                taskManager.save();
+                // Render the tasks
+                taskManager.render();
+          }
         });
-const taskList4 = document.querySelector("#task-list4");
-        taskList4.addEventListener("click",(event) => {
-        if (event.target.classList.contains("doneBtn")){
-        //Get the parent element of doneBtn (dataset.taskID equal of data-task-id)
-        const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-        const taskId = Number(parentTask.dataset.taskId);
-        const taskA = taskManager.getTaskById(taskId);
-        taskA.Status = "Done";       
-        taskManager.save();
-        taskManager.render();
-        }       
-        if (event.target.classList.contains("deleteBtn")) {
-        // Get the parent Task
-        const parentTask =
-        event.target.parentElement.parentElement.parentElement.parentElement;
-        // Get the taskId of the parent Task.
-        const taskId = Number(parentTask.dataset.taskId);
-        // Delete the task
-        taskManager.deleteTask(taskId);
-        // Save the tasks to localStorage
-        taskManager.save();
-        // Render the tasks
-        taskManager.render();
-        }
-        });
-
-// let taskList = ['task-list0', 'task-list1', 'task-list2', 'task-list3', 'task-list4'];
-// // test for loop
-// for(let i = 0; i < taskList.length; i++) {
-//     let taskb = taskList[i];
-//     //console.log(taskb);
-//     taskList[i] = document.getElementById(`"#${taskb}"`);
-//     taskList[i].addEventListener("click",(event) => {
-//             if (event.target.classList.contains("doneBtn")){
-//                 const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-//                 const taskId = Number(parentTask.dataset.taskId);
-//                 const taskA = taskManager.getTaskById(taskId);
-//                 taskA.Status = "Done";       
-//                 taskManager.save();
-//                 taskManager.render();
-//                 //console.log(Number(event.target.id));
-//                 //console.log(Number(taskId)); 
-//              }
+        const taskList3 = document.querySelector("#task-list3");
+        taskList3.addEventListener("click",(event) => {
+            if (event.target.classList.contains("doneBtn")){
+                const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+                const taskId = Number(parentTask.dataset.taskId);
+                const taskA = taskManager.getTaskById(taskId);
+                taskA.Status = "Done";       
+                taskManager.save();
+                taskManager.render();
+                       
+                //console.log(taskManager.currentId);
+                //console.log(taskA.objectId);
+                //console.log(Number(event.target.id));
+                //console.log(Number(taskId)); 
+             }
             
-//              if (event.target.classList.contains("deleteBtn")) {
-//                 // Get the parent Task
-//                 const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
-//                     // Get the taskId of the parent Task.
-//                 const taskId = Number(parentTask.dataset.taskId);
-//                    // Delete the task
-//                     taskManager.deleteTask(taskId);
-//                     // location.reload()
-//                     // Save the tasks to localStorage
-//                     taskManager.save();
-//                     // Render the tasks
-//                     taskManager.render();
-//               }
-//             });
-// }
+             if (event.target.classList.contains("deleteBtn")) {
+                // Get the parent Task
+                const parentTask =
+                  event.target.parentElement.parentElement.parentElement.parentElement;
+                    // Get the taskId of the parent Task.
+                const taskId = Number(parentTask.dataset.taskId);
+                   // Delete the task
+                    taskManager.deleteTask(taskId);
+                    // location.reload()
+                    // Save the tasks to localStorage
+                    taskManager.save();
+                    // Render the tasks
+                    taskManager.render();
+              }
+            });
 
-
+            const taskList4 = document.querySelector("#task-list4");
+            taskList4.addEventListener("click",(event) => {
+            if (event.target.classList.contains("doneBtn")){
+                const parentTask = event.target.parentElement.parentElement.parentElement.parentElement;
+                const taskId = Number(parentTask.dataset.taskId);
+                const taskA = taskManager.getTaskById(taskId);
+                taskA.Status = "Done";       
+                taskManager.save();
+                taskManager.render();
+                       
+                //console.log(taskManager.currentId);
+                //console.log(taskA.objectId);
+                //console.log(Number(event.target.id));
+                //console.log(Number(taskId)); 
+             }
+            
+             if (event.target.classList.contains("deleteBtn")) {
+                // Get the parent Task
+                const parentTask =
+                  event.target.parentElement.parentElement.parentElement.parentElement;
+                    // Get the taskId of the parent Task.
+                const taskId = Number(parentTask.dataset.taskId);
+                   // Delete the task
+                    taskManager.deleteTask(taskId);
+                    // location.reload()
+                    // Save the tasks to localStorage
+                    taskManager.save();
+                    // Render the tasks
+                    taskManager.render();
+              }
+            });
