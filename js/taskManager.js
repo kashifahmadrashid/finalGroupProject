@@ -8,7 +8,7 @@ const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskD
                         <p class="card-text">Due By: ${taskDueDate}</p>
                         <div class="card-footer row">
                             <div class="col-6">
-                                <p class="card-text"><b>Status:</b>${inputState}</p>
+                                <p class="card-text"><b>Status: </b>${inputState}</p>
                             </div>
                             <div class="col-3">
                                 <button class="btn btn-outline-success doneBtn ${inputState === "Done" ? "d-none" : ""}">
