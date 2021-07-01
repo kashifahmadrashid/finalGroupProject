@@ -1,6 +1,6 @@
 const createTaskHTML = (newId, taskTitle, taskDescription, taskAssignment, taskDueDate, inputState) =>{
     const html = `
-                <li class="card row" data-task-id="${newId}" style="min-width: 30vw ">
+                <li class="card col-3" data-task-id="${newId}" style="min-width: 30vw ">
                     <div class="card-body">
                         <h5 class="card-title"><b>${taskTitle}</b></h5>
                         <p class="card-text">${taskDescription}</p>
@@ -83,7 +83,9 @@ class TaskManager{
             }else if (task.inputState === "In Progress") {
                 inprocessArray.push(taskHtml);
                 taskHtmlList.push(taskHtml);
-                };
+            }else{
+                taskHtmlList.push(taskHtml);
+            };
                 
             const doneHtml = doneArray.join("\n");
             const doneList = document.querySelector("#task-list1");
