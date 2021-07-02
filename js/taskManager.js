@@ -4,9 +4,9 @@ const createTaskHTML = (Id, taskTitle, taskDescription, taskAssignment, taskDueD
     const html = `
                 <li class="card" data-task-id="${Id}" style="min-width: 10vw">
                     <div class="card-body">
-                        <h6 class="card-title"><b>${taskTitle}</b></h6>
+                        <h6 class="card-title"><b>TaskTitle:  ${taskTitle}</b></h6>
                         <p class="card-text">${taskDescription}</p>
-                        <p class="card-text">Assigned To:${taskAssignment}</p>
+                        <p class="card-text">Assigned To: ${taskAssignment}</p>
                         <p class="card-text">Due By: ${taskDueDate}</p>
                         <div class="card-footer row b">
                             <div class="col-6">
@@ -85,7 +85,7 @@ class TaskManager{
                                     taskHtmlList.push(taskHtml);
                                     };                 
             
-                                    
+                                    console.log(taskHtmlList);                       
             const doneHtml = doneArray.join("\n");
             const doneList = document.querySelector("#task-list1");
             doneList.innerHTML = doneHtml;
@@ -95,7 +95,7 @@ class TaskManager{
             todoList.innerHTML = todoHtml;
             //add the inProcessHtml to inProcessListHTML
             const inProcessHtml = inprocessArray.join("\n");
-            console.log(inprocessArray);
+            
             const inProcessList = document.querySelector("#task-list3");
             inProcessList.innerHTML = inProcessHtml;
             //add the reviewHtml to reviewListHTML
