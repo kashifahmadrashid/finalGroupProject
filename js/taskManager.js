@@ -2,9 +2,9 @@
 // Declare function createTaskHTML
 const createTaskHTML = (Id, taskTitle, taskDescription, taskAssignment, taskDueDate, inputStatus) =>{
     const html = `
-                <li class="card" data-task-id="${Id}" style="min-width: 10vw">
-                    <div class="card-body">
-                        <h6 class="card-title"><b>TaskTitle:  ${taskTitle}</b></h6>
+                <li class="card " data-task-id="${Id}">
+                    <div class="card-body ">
+                        <h6 class="card-title"><b>${taskTitle}</b></h6>
                         <p class="card-text">${taskDescription}</p>
                         <p class="card-text">Assigned To: ${taskAssignment}</p>
                         <p class="card-text">Due By: ${taskDueDate}</p>
@@ -103,7 +103,7 @@ class TaskManager{
             const reviewList = document.querySelector("#task-list4");
             reviewList.innerHTML = reviewHtml;
             // with a new line in between each item.
-            const tasksHtml = taskHtmlList.join("\n");
+            const tasksHtml = taskHtmlList.join('');
             // Set the inner html of the tasksList on the page
             const tasksList = document.querySelector("#task-list0");
             tasksList.innerHTML = tasksHtml;  
