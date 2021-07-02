@@ -103,7 +103,7 @@ class TaskManager{
             const reviewList = document.querySelector("#task-list4");
             reviewList.innerHTML = reviewHtml;
             // with a new line in between each item.
-            const tasksHtml = taskHtmlList.join('');
+            const tasksHtml = taskHtmlList.join('\n');
             // Set the inner html of the tasksList on the page
             const tasksList = document.querySelector("#task-list0");
             tasksList.innerHTML = tasksHtml;  
