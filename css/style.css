@@ -1,15 +1,5 @@
 
-/* *{
-    margin: 0;
-    box-sizing: border-box;
-    padding: 0;
-  }
-  
-  body{
-    font-family: 'Montserrat', sans-serif;
-  }
-    */
-  
+ 
   h1 {
     color: #090a3f;
     margin-top: 20px;
@@ -48,8 +38,7 @@
 }
 @media screen and (max-width: 900px){
     .collapeButton{visibility: visible;}
-    .filterButton {display: none;}
-    
+    .filterButton {display: none;}    
 }
 
 /* #addBtn:hover { background-image: linear-gradient(to top, #a16d04 0%, #8d5e08 1%, #e6dee9 100%); 
