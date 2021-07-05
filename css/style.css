@@ -1,5 +1,4 @@
 
- 
   h1 {
     color: #090a3f;
     margin-top: 20px;
@@ -17,21 +16,41 @@
     height: auto;
     text-align: center;
    }
-    
-  #addBtn{
-    display: flex;
-    margin-left: 23%;   
-  }
-  .buttonBorder {
-    border-color: #111499;
-  }
+=======
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
 
-.collapeButton{
-  visibility: hidden;
+body{
+    font-family: 'Montserrat', sans-serif;
+    
 }
-.modalDisplay{
-  background-color: rgb(245, 250, 250);
+.heading{
+    height: 10vh;
+    
+    background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
 }
+.heading h1{
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 0px;    
+}
+.topSection{
+    display: grid;
+    grid-template-columns:1fr 1fr;
+}
+.topSection img{
+    margin-left: 300px;
+    
+    height: 50vh;
+}
+.topSection form, h3{
+    margin-left: 160px;
+ 
+
 
 @media screen and (max-width: 769px){
   .image1{display: none;}
@@ -42,41 +61,102 @@
 @media screen and (max-width: 900px){
     .collapeButton{visibility: visible;}
     .filterButton {display: none;}    
-}
-
-/* #addBtn:hover { background-image: linear-gradient(to top, #a16d04 0%, #8d5e08 1%, #e6dee9 100%); 
-  color: black;
-  font-weight: bold;
-} */
-
-  /* #addBtn, #doneFilter, #toDoFilter, #inProgressFilter, #reviewFilter{
+=======
+#addBtn, #doneFilter, #toDoFilter, #inProgressFilter, #reviewFilter{
     background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
     border: none;
-    margin-right: 5px;
-  }
-  #doneFilter:hover {  
+    
+}
+
+#doneFilter, #toDoFilter, #inProgressFilter, #reviewFilter {
+    width: max-content;
+}
+.filter{
+    
+    margin: 20px 0px 0px 10px;
+    align-items: center;
+    display: flex; 
+    justify-content: space-evenly;
+    
+}
+#addBtn:hover { background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%); 
     color: black;
     font-weight: bold;
-  }
-  #toDoFilter:hover{
-    background-image: linear-gradient(to top, #a16d04 0%, #8d5e08 1%, #e6dee9 100%); 
+}
+#doneFilter:hover { background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%); 
     color: black;
     font-weight: bold;
-  }
-  #inProgressFilter:hover{
-    background-image: linear-gradient(to top, #9e6a09 0%, #8d5e08 1%, #e6dee9 100%); 
+}
+#toDoFilter:hover{
+    background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%); 
     color: black;
     font-weight: bold;
-  }
-  #reviewFilter:hover{
-    background-image: linear-gradient(to top, #a16d04 0%, #8d5e08 1%, #e6dee9 100%); 
+}
+#inProgressFilter:hover{
+    background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%); 
     color: black;
     font-weight: bold;
-  }
-  
-  
-  #taskTitle, #taskDescription, #taskAssignment, #taskDueDate, #inputState{
-  
+}
+#reviewFilter:hover{
+    background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%); 
+    color: black;
+    font-weight: bold;
+}
+
+.list-group{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    grid-gap:1rem;
+}
+.card{
+   margin: 10px auto 10px auto;
+        
+}
+
+.taskPromo{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+.taskImg{
+    margin: 15px 0px 10px 0px;
+    
+}
+h2{
+    margin: 10px 0px 10px 0px;
+    text-align: center;
+    font-weight: bolder;
+
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);
+    height: 15vh;
+}
+.social{
+    margin:20px 15px 0px 0px ;
+}
+.social img{
+    width: 30px;
+    margin: 20px 15px 10px 15px;
+}
+.footer{
+    margin:40px 10px 10px 15px;
+}
+
+#taskTitle, #taskDescription, #taskAssignment, #taskDueDate, #inputState{
+
     background: linear-gradient(to bottom, #D5DEE7 0%, #E8EBF2 50%, #E2E7ED 100%), linear-gradient(to bottom, rgba(0,0,0,0.02) 50%, rgba(255,255,255,0.02) 61%, rgba(0,0,0,0.02) 73%), linear-gradient(33deg, rgba(255,255,255,0.20) 0%, rgba(0,0,0,0.20) 100%);
     background-blend-mode: normal,color-burn;
-  } */
+}
+
+@media screen and (max-width: 768px){
+    .image{
+        display: none;
+    }
+       
+}
+
