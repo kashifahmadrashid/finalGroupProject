@@ -6,4 +6,3 @@ This Task Planner can be used for personal and work tasks. This Task Planner wor
 Extra Features added
 1. The Task filter for each category to keep track of the tasks
 2. Some addition css design for illustration purpose
-
